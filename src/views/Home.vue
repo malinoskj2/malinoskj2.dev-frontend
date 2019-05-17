@@ -1,7 +1,18 @@
 <template>
     <div class="home">
-        <img alt="avatar image" id="avatar-image" class="slide-in-blurred-bottom"
-             src="https://avatars3.githubusercontent.com/u/41254238?s=460&v=4">
+        <popper trigger="hover"
+                :force-show="forceShowPopper"
+                :options="{ placement: 'top', modifiers: { offset: { offset: '0,10px' } } }">
+            <div class="popper">
+                Sup
+            </div>
+
+            <p slot="reference">
+                <img alt="avatar image" id="avatar-image" class="slide-in-blurred-bottom"
+                     src="https://avatars3.githubusercontent.com/u/41254238?s=460&v=4">
+            </p>
+        </popper>
+
 
         <div id="media-link-container">
             <a v-for="(linkItem, index) in this.mediaLinks" :href="linkItem.link" :key="index" class="fade-in">
@@ -14,7 +25,9 @@
 </template>
 
 <script>
-    // @ is an alias to /src
+    import Popper from 'vue-popperjs';
+    import 'vue-popperjs/dist/vue-popper.css';
+
     export default {
         name: 'home',
         data() {
@@ -24,13 +37,21 @@
                     {name: 'gitlab', link: 'https://gitlab.com/malinoskj2', iconSpecs: ['fab', 'gitlab']},
                     {name: 'email', link: "mailto:jesse@malinoskj2.dev", iconSpecs: ['fas', 'envelope']}
                 ],
+                forceShowPopper: false
             }
         },
-        components: {},
+        components: {
+            'popper': Popper
+        },
+        methods: {
+            setShowPopper(show) {
+                this.forceShowPopper = show;
+            }
+        },
         mounted() {
             setTimeout(() => {
-
-            }, 2700)
+                this.setShowPopper(true);
+            }, 5700)
         }
     }
 </script>
@@ -74,7 +95,7 @@
         text-decoration: none;
     }
 
-    a:hover p{
+    a:hover p {
         visibility: visible;
         text-decoration: none;
     }
