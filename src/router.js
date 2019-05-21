@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home2 from './views/Home2.vue'
-import PostView from './views/PostView.vue'
 
-Vue.use(Router)
+const Home2 = () => import('./views/Home2.vue');
+const PostView = () => import('./views/PostView.vue');
+
+Vue.use(Router);
 
 export default new Router({
     routes: [
@@ -17,7 +18,11 @@ export default new Router({
                         {call: 'color', modifier: 'temp', argument: '#ffb000'},
                         {call: 'fail', modifier: 'temp', argument: '#6e0000'},
                         {call: 'location', modifier: 'temp', argument: 'top'},
-                        {call: 'transition', modifier: 'temp', argument: {speed: '.1s', opacity: '0.6s', termination: 400}}
+                        {
+                            call: 'transition',
+                            modifier: 'temp',
+                            argument: {speed: '.1s', opacity: '0.6s', termination: 400}
+                        }
                     ]
                 }
             }
