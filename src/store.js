@@ -2,8 +2,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import dayjs from 'dayjs'
-const fs = require('fs');
-const readingTime = require('reading-time');
+import readingTime from 'reading-time'
 
 Vue.use(Vuex)
 
