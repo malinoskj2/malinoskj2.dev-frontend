@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faGithub, faGitlab} from '@fortawesome/free-brands-svg-icons'
+import {faGithub, faGitlab, faFacebookF, faTwitter, faReddit} from '@fortawesome/free-brands-svg-icons'
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import {faArrowCircleUp} from "@fortawesome/free-solid-svg-icons/faArrowCircleUp";
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
@@ -11,7 +11,7 @@ import VueProgressBar from 'vue-progressbar'
 import ScrollView from 'vue-scrollview'
 
 
-library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp)
+library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp, faFacebookF, faTwitter, faReddit);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
