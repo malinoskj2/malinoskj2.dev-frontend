@@ -14,21 +14,28 @@ export default new Vuex.Store({
     },
     getters: {
         posts: state => {
-            const postSlice = state.posts
-                .map(post => {
-                    return {
-                        ...post,
-                        publishedAt: dayjs(post.publishedAt),
-                        readingStats: readingTime(post.content)
-                    }
-                });
-
-            return postSlice;
+            return state.posts;
+        },
+        postById: (state) => (id) => {
+            const res = state.posts.find(post => post._id === id);
+            if (res) {
+                return res;
+            } else {
+                getPostById(id).then(post=> {
+                    return post;
+                }).catch('Failed to get post by id');
+            }
         }
     },
     mutations: {
         setPosts(state, posts) {
-            state.posts = posts;
+            state.posts = posts.map(post => {
+                return {
+                    ...post,
+                    publishedAt: dayjs(post.publishedAt),
+                    readingStats: readingTime(post.content)
+                }
+            });
         }
     },
     actions: {

@@ -9,7 +9,6 @@
         <slot name="reading-time"/>
         <slot name="text"/>
 
-
         <router-link :to="postPath">
             <p id="expand-message" class="flex-center-item"
                @click="$emit('read-post', {title: title})">{{expandMessage}}</p>
@@ -30,6 +29,10 @@
                 required: false,
                 default: "READ"
             },
+            id: {
+                type: String,
+                required: true
+            },
             title: {
                 type: String,
                 required: true,
@@ -37,7 +40,7 @@
         },
         computed: {
             postPath() {
-                return `/posts/${this.title.toString().toLowerCase().replace(/\s+/g, '-')}`;
+                return `/posts/${this.id}`;
             },
         }
     }

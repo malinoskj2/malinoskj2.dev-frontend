@@ -31,18 +31,13 @@
             this.getPost();
         },
         methods: {
-            getPost() {
-                // const post = this.$store.getters.posts[0];
-
-                const {title, publishedAt, content, readingStats} = this.$store.getters.posts
-                    .find(post => {
-                        const formattedTitle = `${post.title.toString().toLowerCase().replace(/\s+/g, '-')}`;
-                        return this.$route.params.post.includes(formattedTitle.substring(0, formattedTitle.length - 2));
-                    });
+            async getPost() {
+                const {title, publishedAt, content, readingStats} =
+                    this.$store.getters.postById(this.$route.params.id);
 
                 this.title = title;
                 this.date = publishedAt.format('MMMM-YYYY');
-                this.text = content
+                this.text = content;
                 this.readingStats =  readingStats;
             }
         },

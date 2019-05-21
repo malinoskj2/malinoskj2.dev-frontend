@@ -28,7 +28,7 @@ export default new Router({
             }
         },
         {
-            path: '/posts/:post',
+            path: '/posts/:id',
             name: 'post-view',
             component: PostView,
         }

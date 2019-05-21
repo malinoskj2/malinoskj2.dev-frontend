@@ -27,7 +27,7 @@
             </div>
 
             <div v-for="(post, index) in this.$store.getters.posts" :key="index" class="post-container">
-                <Post class="post" :title="post.title" @read-post="(payload) => $emit('read-post', payload )">
+                <Post class="post" :id="post._id" :title="post.title" @read-post="(payload) => $emit('read-post', payload )">
                     <h1 slot="title" class="post-title"
                         @click="$emit('read-post', {title: post.title})">{{post.title}}</h1>
                     <span slot="date" class="post-date">{{post.publishedAt.format('MMMM-YYYY')}}</span>
