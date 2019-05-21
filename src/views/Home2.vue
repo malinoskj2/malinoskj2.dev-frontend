@@ -88,6 +88,7 @@
 </script>
 
 <style scoped>
+
     #avatar-image {
         margin-right: 2rem;
         height: 10rem;
@@ -98,46 +99,9 @@
         width: 540px;
     }
 
-    .post {
-        text-align: left;
-        max-width: 700px;
-    }
-
-    .post-title {
-        font-family: 'Fira Mono', monospace;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 36px;
-        line-height: 43px;
-        color: #19193A;
-        margin-bottom: 1rem;
-        padding-bottom: 0;
-    }
-
     .post-title:hover {
         cursor: pointer;
         color: #FF6663;
-    }
-
-    .post-date {
-        font-family: 'Fira Mono', monospace;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1rem;
-        line-height: 19px;
-        letter-spacing: 0.04em;
-        color: #19193A;
-
-    }
-
-    .post-text {
-        font-family: Ek Mukta, sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1rem;
-        line-height: 27px;
-
-        color: #10092f;
     }
 
     .home {
@@ -149,18 +113,4 @@
         justify-content: space-evenly;
     }
 
-    .center-grid {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-    }
-
-    .count-value {
-        color: #19193A;
-        margin-left: .5rem;
-    }
-    .sub-info-section {
-        padding-bottom: 2rem;
-    }
 </style>

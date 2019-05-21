@@ -9,6 +9,7 @@ import {faArrowCircleUp} from "@fortawesome/free-solid-svg-icons/faArrowCircleUp
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import VueProgressBar from 'vue-progressbar'
 import ScrollView from 'vue-scrollview'
+import "@/assets/css/styles.css"
 
 
 library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp, faFacebookF, faTwitter, faReddit);

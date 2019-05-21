@@ -1,0 +1,48 @@
+.count-value {
+    color: #19193A;
+    margin-left: .5rem;
+}
+
+.center-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.post {
+    text-align: left;
+    max-width: 700px;
+}
+
+.post-text {
+    font-family: Ek Mukta, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 27px;
+    color: #10092f;
+}
+
+.post-date {
+    text-align: left;
+    font-family: 'Fira Mono', monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+    color: #19193A;
+}
+
+.post-title {
+    text-align: left;
+    font-family: 'Fira Mono', monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 43px;
+    color: #19193A;
+    margin-bottom: 1rem;
+    padding-bottom: 0;
+}

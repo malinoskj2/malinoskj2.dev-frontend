@@ -11,13 +11,7 @@
 
             <p v-html="text" class="post-text"/>
 
-            <div class="share-icons">
-                <div v-for="(icon ,index) in mediaIcons" :key="index">
-                    <a :href="icon.url">
-                        <font-awesome-icon :icon="icon.iconSpecs" size="lg" :style="icon.style"/>
-                    </a>
-                </div>
-            </div>
+            <MediaIconGroup :iconDataObjects="mediaIcons"/>
         </div>
 
     </div>
@@ -26,6 +20,7 @@
 
 <script>
     /* eslint-disable no-unused-vars */
+    import MediaIconGroup from '@/components/MediaIconGroup.vue';
 
     const generateFBLink = (url) => {
         return `https://www.facebook.com/sharer/sharer.php?u=http%3A//${url}/`
@@ -51,7 +46,9 @@
                 mediaIcons: [],
             }
         },
-        components: {},
+        components: {
+            MediaIconGroup
+        },
         props: {},
         created() {
             this.getPost();
@@ -95,78 +92,8 @@
 
 <style scoped>
 
-    .post {
-        text-align: left;
-        max-width: 700px;
-    }
-
-    .post-title {
-        text-align: left;
-        font-family: 'Fira Mono', monospace;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 36px;
-        line-height: 43px;
-        color: #19193A;
-        margin-bottom: 1rem;
-        padding-bottom: 0;
-    }
-
-    .post-date {
-        text-align: left;
-        font-family: 'Fira Mono', monospace;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1rem;
-        line-height: 19px;
-        letter-spacing: 0.04em;
-        color: #19193A;
-    }
-
-    .post-text {
-        text-align: left;
-        font-family: Mukta, sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1.2rem;
-        line-height: 27px;
-        color: #10092f;
-    }
-
-    .center-grid {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-    }
-
-    .count-value {
-        color: #19193A;
-        margin-left: .5rem;
-    }
-
     .sub-info-section {
         padding-bottom: 2rem;
-    }
-
-    .share-icons {
-        margin-left: 0;
-        margin-top: 2rem;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-    }
-
-    .share-icons > * {
-        margin-right: 1rem;
-        filter: saturate(0) opacity(.7) drop-shadow(0px 6px 4px rgba(12, 7, 38, 0.21));
-        transition: all 300ms;
-    }
-
-    .share-icons > *:hover {
-        cursor: pointer;
-        filter: saturate(.5) opacity(1) drop-shadow(0px 0px 4px rgba(12, 7, 38, 0.0));
     }
 
 </style>
