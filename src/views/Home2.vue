@@ -30,9 +30,12 @@
                 <Post class="post" :id="post._id" :title="post.title" @read-post="(payload) => $emit('read-post', payload )">
                     <h1 slot="title" class="post-title"
                         @click="$emit('read-post', {title: post.title})">{{post.title}}</h1>
+
                     <span slot="date" class="post-date">{{post.publishedAt.format('MMMM-YYYY')}}</span>
                     <span slot="reading-time" class="count-value">:: {{post.readingStats.text.toUpperCase()}}</span>
-                    <p slot="text" class="post-text">{{post.content}}</p>
+
+
+                    <p slot="text" v-html="post.content" class="post-text"/>
                 </Post>
             </div>
 
@@ -44,6 +47,7 @@
     import InfoCard from '@/components/InfoCard.vue'
     import Post from '@/components/Post.vue'
 
+    // <vue-simple-markdown slot="text" :source="post.content" class="post-text"/>
     export default {
         name: "Home2",
         data() {
@@ -155,5 +159,8 @@
     .count-value {
         color: #19193A;
         margin-left: .5rem;
+    }
+    .sub-info-section {
+        padding-bottom: 2rem;
     }
 </style>

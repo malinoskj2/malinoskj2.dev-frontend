@@ -1,16 +1,17 @@
 <template>
 
     <div class="center-grid">
-        <div class="home">
-            <div class="post-container">
-                <div class="post">
-                    <h1 class="post-title">{{title}}</h1>
+            <div class="post">
+                <h1 class="post-title">{{title}}</h1>
+
+                <p class="sub-info-section">
                     <span class="post-date">{{date}}</span>
                     <span class="reading-time count-value">:: {{readingStats.text.toUpperCase()}}</span>
-                    <p class="post-text">{{text}}</p>
-                </div>
+                </p>
+
+                <p v-html="text" class="post-text"/>
             </div>
-        </div>
+
     </div>
 
 </template>
@@ -38,7 +39,7 @@
                 this.title = title;
                 this.date = publishedAt.format('MMMM-YYYY');
                 this.text = content;
-                this.readingStats =  readingStats;
+                this.readingStats = readingStats;
             }
         },
         computed: {},
@@ -82,7 +83,6 @@
         font-weight: 500;
         font-size: 1.2rem;
         line-height: 27px;
-
         color: #10092f;
     }
 
@@ -93,17 +93,12 @@
         justify-content: center;
     }
 
-    .home {
-        max-width: 700px;
-        display: grid;
-        grid-template-columns: 4fr;
-        grid-template-rows: auto;
-        grid-gap: 6rem 0rem;
-        justify-content: space-evenly;
-    }
-
     .count-value {
         color: #19193A;
         margin-left: .5rem;
+    }
+
+    .sub-info-section {
+        padding-bottom: 2rem;
     }
 </style>

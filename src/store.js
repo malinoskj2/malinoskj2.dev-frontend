@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import readingTime from 'reading-time'
 
 import {getRecentPosts, getPostById} from './client.js'
-
+const markdown = require( "markdown" ).markdown;
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -33,7 +33,8 @@ export default new Vuex.Store({
                 return {
                     ...post,
                     publishedAt: dayjs(post.publishedAt),
-                    readingStats: readingTime(post.content)
+                    readingStats: readingTime(post.content),
+                    content: markdown.toHTML(post.content)
                 }
             });
         }
