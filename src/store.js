@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 import dayjs from 'dayjs'
 import readingTime from 'reading-time'
 
+import {getRecentPosts, getPostById} from './client.js'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -12,7 +14,7 @@ export default new Vuex.Store({
     },
     getters: {
         posts: state => {
-            const postSlice = state.posts.slice(1, 5)
+            const postSlice = state.posts
                 .map(post => {
                     return {
                         ...post,
@@ -31,15 +33,17 @@ export default new Vuex.Store({
     },
     actions: {
         async initPosts(context) {
-            if (process.env.NODE_ENV === 'development') {
-                const jsonFile = require('../test/assets/testData.json');
-                context.commit('setPosts', jsonFile.articles)
-            } else {
-                const res = await fetch('https://newsapi.org/v2/everything?q=bitcoin&from=2019-04-20' +
-                    '&sortBy=publishedAt&apiKey=90eeb1d31e304f8d83b6e9a83b3be329');
-                const resBody = await res.json();
-                context.commit('setPosts', resBody.articles)
-            }
+            const posts = await getRecentPosts();
+            context.commit('setPosts', posts);
         }
     }
 })
+
+const logPosts = (entries) => {
+    entries.forEach(entry => {
+        console.log(`id: ${entry._id}`);
+        console.log(`title: ${entry.title}`);
+        console.log(`publishedAt: ${dayjs(entry.publishedAt).format('MMMM-YYYY')}`);
+        console.log(`content: ${entry.content.substring(1, 10)}...`);
+    })
+};
