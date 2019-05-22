@@ -30,9 +30,6 @@
             return {
                 titleIsVisible: false,
                 isLoaded: false,
-                navTitleColor: "background-color: rgba(244, 244, 244, 0); " +
-                    "text-shadow: 2px 2px 3px rgba(255, 255, 255, 0); cursor: default; pointer-events: none;",
-                goTopArrowStyle: {color: 'rgba(178, 178, 178, 0) '},
                 iconSpecs: ['fa', 'arrow-circle-up'],
             }
         },
@@ -44,11 +41,9 @@
                 this.isLoaded = true;
             },
             showNav() {
-                console.log('show title');
                 this.titleIsVisible = true;
             },
             hideNav() {
-                console.log('hide title');
                 this.titleIsVisible = false;
             },
             onArrowClick() {
