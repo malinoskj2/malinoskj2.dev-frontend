@@ -1,12 +1,11 @@
 <template>
 
     <div id="app">
-
-            <router-link :to="{ name: 'home' }">
-                <transition name="slide-fade">
-                    <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
-                </transition>
-            </router-link>
+        <router-link :to="{ name: 'home' }">
+            <transition name="slide-fade">
+                <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
+            </transition>
+        </router-link>
 
         <transition name="slide-fade-arrow">
             <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
@@ -14,7 +13,7 @@
         </transition>
 
         <div class="prog-bar-container">
-            <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
+            <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"/>
         </div>
 
         <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
@@ -177,6 +176,8 @@
         filter: opacity(0);
     }
 
+
+
     /* For arrow */
     .slide-fade-arrow-enter-active {
         transition: all .3s ease;
@@ -187,10 +188,26 @@
     }
 
     .slide-fade-arrow-enter, .slide-fade-arrow-leave-to
-        /* .slide-fade-leave-active below version 2.1.8 */
     {
         transform: translateX(10px);
         opacity: 0;
+    }
+
+
+    /*  For notification */
+    /* Title Bg color has 0 opacity so not showing */
+    .slide-fade-notify-enter-active {
+        transition: all .3s ease;
+    }
+
+    .slide-fade-notify-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .slide-fade-notify-enter, .slide-fade-notify-leave-to
+    {
+        transform: translateY(10px);
+        filter: opacity(0);
     }
 
 </style>

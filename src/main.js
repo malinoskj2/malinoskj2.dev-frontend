@@ -10,7 +10,7 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import VueProgressBar from 'vue-progressbar'
 import ScrollView from 'vue-scrollview'
 import "@/assets/css/styles.css"
-
+import Toasted from 'vue-toasted';
 
 library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp, faFacebookF, faTwitter, faReddit);
 
@@ -20,7 +20,7 @@ Vue.config.productionTip = false;
 
 console.log(`Current Environment: ${process.env.NODE_ENV}`);
 
-const options = {
+const opt = {
     color: '#FF6663',
     failedColor: '#874b4b',
     thickness: '.25rem',
@@ -35,7 +35,9 @@ const options = {
     },
 };
 
-Vue.use(VueProgressBar, options);
+Vue.use(Toasted, { position: 'bottom-center', duration: 3000,
+    className: 'j2-notification', containerClass: 'j2-notification-container'});
+Vue.use(VueProgressBar, opt);
 Vue.use(ScrollView, {
     throttle: 50,
     callbacks: []

@@ -8,7 +8,7 @@
                 <span v-for="(link, index) in linkPairs" :key="index">
                     <span class="link-group">
                         <router-link :to="link.path" class="reset-a">
-                            <span class="link">{{link.name}}</span>
+                            <span class="link" @click="notify(link.name)">{{link.name}}</span>
                         </router-link>
                         <span v-if="link.count > 0" class="count-value">{{link.count}}</span>
                     </span>
@@ -21,8 +21,15 @@
 </template>
 
 <script>
+    /* eslint-disable no-empty */
+
     export default {
         name: "InfoCard",
+        data() {
+            return {
+                unimplemented: ['posts','about'],
+            }
+        },
         props: {
             delimiter: {
                 type: String,
@@ -45,13 +52,20 @@
                 type: Object,
                 required: true
             },
-
         },
-        methods: {},
+        methods: {
+            notify(name) {
+                 if (this.unimplemented.includes(name.toString().toLowerCase())) {
+                     this.$toasted.show("I'm going to make that page real soon. ;)");
+                 }
+            }
+        },
     }
 </script>
 
 <style scoped>
+
+
     .delimiter {
         margin-right: 1rem;
     }

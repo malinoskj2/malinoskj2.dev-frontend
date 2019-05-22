@@ -59,3 +59,17 @@
     color: inherit; /* blue colors for links too */
     text-decoration: inherit; /* no underline */
 }
+
+.j2-notification {
+    font-family: 'Fira Mono', monospace;
+    background-color: rgba(178, 178, 178, 1) !important;
+    filter: drop-shadow(0px 16px 4px rgba(12, 7, 38, 0.31));
+    transition: 100ms filter;
+}
+
+.j2-notification:hover {
+    cursor: pointer;
+    transform: scale(.8);
+    background-color: rgba(255, 102, 99, .93) !important;
+    filter: drop-shadow(0px 0px 4px rgba(12, 10, 38, 0.31));
+}
