@@ -35,7 +35,7 @@
                     <span slot="date" class="post-date">{{post.publishedAt.format('MMMM-YYYY')}}</span>
                     <span slot="reading-time" class="count-value">:: {{post.readingStats.text.toUpperCase()}}</span>
 
-                    <p slot="text" v-html="post.content" class="post-text"/>
+                    <div slot="text" v-html="post.content" class="post-text"/>
                 </Post>
             </div>
 
@@ -125,5 +125,6 @@
         grid-gap: 6rem 0rem;
         justify-content: space-evenly;
     }
+
 
 </style>

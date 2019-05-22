@@ -24,6 +24,10 @@
     color: #10092f;
 }
 
+.post-text > * {
+    margin-bottom: 1rem;
+}
+
 .post-date {
     text-align: left;
     font-family: 'Fira Mono', monospace;
