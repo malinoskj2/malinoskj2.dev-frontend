@@ -3,10 +3,12 @@
         <div id="footer-content">
 
             <div class="footer-link-group">
-                <font-awesome-icon v-for="(link,index) in socialMediaLinkData" :key="index"
-                                   class="reset-a media-link" :icon="link.iconSpecs" size="lg">
-                    {{link.name}}
-                </font-awesome-icon>
+                <a :href="link.url" v-for="(link,index) in socialMediaLinkData" :key="index"
+                   class="reset-a ">
+                    <font-awesome-icon class="media-link footer-link-child" :icon="link.iconSpecs" size="lg">
+                        {{link.name}}
+                    </font-awesome-icon>
+                </a>
             </div>
 
             <p class="copyright-notice">© 2019 malinoskj2.dev</p>
@@ -18,7 +20,7 @@
 
             <div class="license-info-line">
                 <p class="copyright-notice">code licensed under</p>
-                <a :href="contentLicenseLink" class="reset-a copyright-notice">bsd-2-clause</a>
+                <a :href="codeLicenseLink" class="reset-a copyright-notice">bsd-2-clause</a>
             </div>
 
         </div>
@@ -64,11 +66,12 @@
         justify-content: space-evenly;
     }
 
-    #footer-content > p,span,a {
+    #footer-content > p, span, a {
         font-size: .75rem;
         color: rgba(25, 50, 60, 0.4);
         text-decoration: none;
     }
+
     .copyright-notice {
         margin-right: .75rem;
     }
@@ -86,10 +89,9 @@
         filter: saturate(.5) opacity(1) drop-shadow(0px 0px 4px rgba(12, 0, 38, 0.0));
     }
 
-    .footer-link-group > * {
+    .footer-link-child {
         margin: 1rem;
         padding: 1rem;
-
     }
 
     .license-info-line {
@@ -98,13 +100,14 @@
         flex-wrap: nowrap;
         justify-content: center;
     }
-    .license-info-line> p,span {
+
+    .license-info-line > p, span {
         font-size: .75rem;
         color: rgba(25, 50, 60, 0.4);
         text-decoration: none;
     }
 
-    .license-info-line> a {
+    .license-info-line > a {
         font-size: .75rem;
         font-weight: 600;
         color: rgba(25, 50, 60, 0.30);
@@ -112,7 +115,7 @@
         margin-left: -.25rem;
     }
 
-    .license-info-line> a:hover {;
+    .license-info-line > a:hover {;
         color: rgba(25, 50, 60, 0.68);
     }
 
