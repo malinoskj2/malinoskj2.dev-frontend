@@ -40,7 +40,7 @@
                 title: '',
                 date: '',
                 text: '',
-                readingStats: null,
+                readingStats: { text:'' },
                 url: '',
                 mediaIcons: [],
             }
