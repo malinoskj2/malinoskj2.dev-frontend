@@ -43,8 +43,13 @@ export default new Vuex.Store({
             context.commit('setPosts', posts);
         },
         async initPostById(context, payload) {
-            const post = await getPostById(payload.id);
-            context.commit('setPosts', [post]);
+            const res = context.getters.postById(payload.id);
+            
+            if (!res) {
+                const post = await getPostById(payload.id);
+                context.commit('setPosts', [post]);
+            }
+
         }
     }
 })
