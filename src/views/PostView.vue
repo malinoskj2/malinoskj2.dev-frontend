@@ -65,7 +65,6 @@
                 this.url = url;
                 document.title = title;
             },
-
         },
         computed: {},
     }
