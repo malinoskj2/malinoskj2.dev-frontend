@@ -123,5 +123,7 @@
         justify-content: space-evenly;
     }
 
-
+    .post-container {
+        margin-bottom: 5rem;
+    }
 </style>

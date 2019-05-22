@@ -19,7 +19,7 @@
 
         <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
 
-        <Footer/>
+        <Footer :socialMediaLinkData="socialMediaLinkData"/>
     </div>
 
 </template>
@@ -30,10 +30,14 @@
     export default {
         data() {
             return {
-
                 titleIsVisible: false,
                 isLoaded: true,
                 iconSpecs: ['fa', 'arrow-circle-up'],
+                socialMediaLinkData: [
+                    {name: 'github', url: 'https://github.com/malinoskj2', iconSpecs: ['fab', 'github']},
+                    {name: 'gitlab', url: 'https://gitlab.com/malinoskj2', iconSpecs: ['fab', 'gitlab']},
+                    {name: 'email', url: 'mailto:jesse@malinoskj2.dev', iconSpecs: ['fa', 'envelope']},
+                ],
             }
         },
         components: {
