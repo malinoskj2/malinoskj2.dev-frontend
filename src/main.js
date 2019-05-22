@@ -24,16 +24,15 @@ const options = {
     color: '#FF6663',
     failedColor: '#874b4b',
     thickness: '.25rem',
-    height: '2px',
-    transition: {
-        speed: '0.1s',
-        opacity: '0.6s',
-        termination: 300
-    },
     autoRevert: false,
     location: 'top',
     inverse: false,
-    autoFinish: false
+    autoFinish: false,
+    transition: {
+        speed: '0.2s',
+        opacity: '0.6s',
+        termination: 300
+    },
 };
 
 Vue.use(VueProgressBar, options);

@@ -15,7 +15,7 @@
             <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
         </div>
 
-        <router-view @show-nav="showNav()" @hide-nav="hideNav()" @read-post="readPost"/>
+        <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
 
         <Footer/>
     </div>
@@ -29,7 +29,7 @@
         data() {
             return {
                 titleIsVisible: false,
-                isLoaded: false,
+                isLoaded: true,
                 iconSpecs: ['fa', 'arrow-circle-up'],
             }
         },
@@ -37,9 +37,6 @@
             Footer
         },
         methods: {
-            setLoaded() {
-                this.isLoaded = true;
-            },
             showNav() {
                 this.titleIsVisible = true;
             },
@@ -49,16 +46,23 @@
             onArrowClick() {
                 window.scrollTo({top: 0, behavior: 'smooth'})
             },
-            readPost(payload) {
+            initRouteHooks() {
+                this.$router.beforeEach((to, from, next) => {
+                    this.$Progress.start();
+                    next()
+                });
+
+                this.$router.afterEach((to, from) => {
+                    this.$Progress.finish()
+                });
             }
         },
         mounted() {
-            this.$Progress.increase(100);
-            this.setLoaded();
+            this.$Progress.finish();
         },
         created() {
             this.$Progress.start();
-            this.$Progress.increase(30);
+            this.initRouteHooks();
         }
     }
 </script>

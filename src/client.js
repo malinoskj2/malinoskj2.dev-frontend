@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 const api = process.env.VUE_APP_API;
 
-const getRecentPosts = async (count) => {
+const getRecentPosts = async () => {
     const res = await fetch(`${api}/collections/get/posts`);
     const resBody = await res.json();
     return resBody.entries;

@@ -5,9 +5,10 @@ import dayjs from 'dayjs'
 import readingTime from 'reading-time'
 
 import {getRecentPosts, getPostById} from './client.js'
-const markdown = require( "markdown" ).markdown;
-Vue.use(Vuex)
 
+const markdown = require( "markdown" ).markdown;
+
+Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         posts: [],
@@ -20,8 +21,6 @@ export default new Vuex.Store({
             const res = state.posts.find(post => post._id === id);
             if (res) {
                 return res;
-            } else {
-                console.log('article not already in store');
             }
         }
     },
@@ -50,7 +49,6 @@ export default new Vuex.Store({
                 const post = await getPostById(payload.id);
                 context.commit('setPosts', [post]);
             }
-
         }
     }
 })
