@@ -63,8 +63,7 @@
     }
 </script>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Fira+Mono:500,700&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=Mukta&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Fira+Mono:500,700|Mukta:400,500&display=swap');
 
     #app {
         font-family: 'Fira Mono', monospace;
