@@ -70,7 +70,6 @@
                 const twitterShareLink = generateTwitterShareLink(window.location.href);
                 const redditShareLink = generateRedditShareLink('www.reddit.com', window.location.href, title);
 
-
                 this.mediaIcons = [
                     {
                         name: 'facebook', iconSpecs: ['fab', 'facebook-f'],
@@ -85,6 +84,8 @@
                         style: {color: '#FF4500'}, url: redditShareLink
                     },
                 ];
+
+                document.title = title;
             },
 
         },

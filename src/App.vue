@@ -11,7 +11,6 @@
                                id="go-top-arrow" @click="onArrowClick"/>
         </transition>
 
-
         <div class="prog-bar-container">
             <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
         </div>

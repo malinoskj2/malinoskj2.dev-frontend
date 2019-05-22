@@ -83,6 +83,7 @@
             Post
         },
         created() {
+            document.title = "malinoskj2.dev";
             this.getContent();
         },
         methods: {
