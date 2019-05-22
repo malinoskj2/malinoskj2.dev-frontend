@@ -1,18 +1,25 @@
 <template>
 
-        <div id="app">
-            <h2 id="site-title"
-                :style="navTitleColor" @mouseenter="onTitleHoverEnter" @mouseleave="onTitleHoverExit">malinoskj2.dev</h2>
+    <div id="app">
 
-            <font-awesome-icon :icon="iconSpecs" size="2x" class="media-link" id="go-top-arrow" :style="goTopArrowStyle"
-                               @mouseenter="onArrowEnter" @mouseleave="onArrowExit" @click="onArrowClick"/>
-            <div class="prog-bar-container">
-                <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
-            </div>
-            <router-view @show-nav="showNav()" @hide-nav="hideNav()" @read-post="readPost"/>
+        <transition name="slide-fade">
+            <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
+        </transition>
 
-            <Footer/>
+        <transition name="slide-fade-arrow">
+            <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
+                               id="go-top-arrow" @click="onArrowClick"/>
+        </transition>
+
+
+        <div class="prog-bar-container">
+            <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
         </div>
+
+        <router-view @show-nav="showNav()" @hide-nav="hideNav()" @read-post="readPost"/>
+
+        <Footer/>
+    </div>
 
 </template>
 <script>
@@ -38,39 +45,12 @@
                 this.isLoaded = true;
             },
             showNav() {
+                console.log('show title');
                 this.titleIsVisible = true;
-                this.navTitleColor = "background-color: rgba(178, 178, 178, 0.93); " +
-                    "text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);";
-                this.goTopArrowStyle = {color: 'rgba(178, 178, 178, 0.93) '};
             },
             hideNav() {
+                console.log('hide title');
                 this.titleIsVisible = false;
-                this.navTitleColor = "background-color: rgba(244, 244, 244, 0); " +
-                    "text-shadow: 2px 2px 3px rgba(255, 255, 255, 0); cursor: default; pointer-events: none;";
-                this.goTopArrowStyle = {color: 'rgba(178, 178, 178, 0) '}
-            },
-            onTitleHoverEnter() {
-                if (this.titleIsVisible) {
-                    this.navTitleColor = "background-color: rgba(255, 102, 99, 0.85); " +
-                        "text-shadow: 2px 2px 3px rgba(255, 255, 255, .5); cursor: pointer;";
-                }
-            },
-            onTitleHoverExit() {
-                if (this.titleIsVisible) {
-                    this.navTitleColor = "background-color: rgba(178, 178, 178, 0.93); " +
-                        "text-shadow: 2px 2px 3px rgba(255, 255, 255, .5); cursor: default;";
-
-                }
-            },
-            onArrowEnter() {
-                if (this.titleIsVisible) {
-                    this.goTopArrowStyle = {color: 'rgba(255, 102, 99, .93)'};
-                }
-            },
-            onArrowExit() {
-                if (this.titleIsVisible) {
-                    this.goTopArrowStyle = {color: 'rgba(178, 178, 178, 0.93) '};
-                }
             },
             onArrowClick() {
                 window.scrollTo({top: 0, behavior: 'smooth'})
@@ -121,6 +101,15 @@
         left: 0;
         margin: .5rem 0 0 1rem;
         z-index: 100;
+
+        background-color: rgba(178, 178, 178, 0.93);
+        text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
+    }
+
+    #site-title:hover {
+        background-color: rgba(255, 102, 99, 0.85);
+        text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
+        cursor: pointer;
     }
 
     .top-border {
@@ -132,9 +121,9 @@
     }
 
     * {
-        margin:0;
-        padding:0;
-        border:0;
+        margin: 0;
+        padding: 0;
+        border: 0;
     }
 
     ::selection {
@@ -152,6 +141,7 @@
         margin: 0 1rem 1rem 0;
         padding: 0;
         transition: 300ms all;
+        color: rgba(178, 178, 178, 0.93);
         filter: drop-shadow(0px 6px 4px rgba(12, 7, 38, 0.21));
         transform: scale(.9);
     }
@@ -159,7 +149,37 @@
     #go-top-arrow:hover {
         cursor: pointer;
         transform: scale(.8);
+        color: rgba(255, 102, 99, .93);
         filter: drop-shadow(0px 0px 4px rgba(12, 10, 38, 0.31));
+    }
+
+    /* For Vue transitions/animations */
+
+    /* Title Bg color has 0 opacity so not showing */
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+        /* .slide-fade-leave-active below version 2.1.8 */ {
+
+        transform: translateX(10px);
+        filter: opacity(0);
+    }
+
+    /* For arrow */
+    .slide-fade-arrow-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-arrow-leave-active {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-arrow-enter, .slide-fade-arrow-leave-to
+        /* .slide-fade-leave-active below version 2.1.8 */ {
+        transform: translateX(10px);
+        opacity: 0;
     }
 
 </style>
