@@ -54,6 +54,9 @@
         },
         methods: {
             async getPost() {
+                await this.$store.dispatch('initPostById', {id: this.$route.params.id})
+                    .catch(() => console.log('store failed to get post'));
+
                 const {title, publishedAt, content, readingStats} =
                     this.$store.getters.postById(this.$route.params.id);
 

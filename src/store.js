@@ -21,9 +21,7 @@ export default new Vuex.Store({
             if (res) {
                 return res;
             } else {
-                getPostById(id).then(post=> {
-                    return post;
-                }).catch('Failed to get post by id');
+                console.log('article not already in store');
             }
         }
     },
@@ -43,6 +41,10 @@ export default new Vuex.Store({
         async initPosts(context) {
             const posts = await getRecentPosts();
             context.commit('setPosts', posts);
+        },
+        async initPostById(context, payload) {
+            const post = await getPostById(payload.id);
+            context.commit('setPosts', [post]);
         }
     }
 })
