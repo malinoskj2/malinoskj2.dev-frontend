@@ -1,22 +1,24 @@
 <template>
-    <div id="app" class="patterned-bg">
 
-        <h2 id="site-title"
-            :style="navTitleColor" @mouseenter="onTitleHoverEnter" @mouseleave="onTitleHoverExit">malinoskj2.dev</h2>
+        <div id="app">
+            <h2 id="site-title"
+                :style="navTitleColor" @mouseenter="onTitleHoverEnter" @mouseleave="onTitleHoverExit">malinoskj2.dev</h2>
 
-        <font-awesome-icon :icon="iconSpecs" size="2x" class="media-link" id="go-top-arrow" :style="goTopArrowStyle"
-                           @mouseenter="onArrowEnter" @mouseleave="onArrowExit" @click="onArrowClick"/>
+            <font-awesome-icon :icon="iconSpecs" size="2x" class="media-link" id="go-top-arrow" :style="goTopArrowStyle"
+                               @mouseenter="onArrowEnter" @mouseleave="onArrowExit" @click="onArrowClick"/>
+            <div class="prog-bar-container">
+                <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
+            </div>
+            <router-view @show-nav="showNav()" @hide-nav="hideNav()" @read-post="readPost"/>
 
-        <div class="prog-bar-container">
-            <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"></vue-progress-bar>
+            <Footer/>
         </div>
 
-        <router-view @show-nav="showNav()" @hide-nav="hideNav()" @read-post="readPost"/>
-
-    </div>
 </template>
 <script>
     /* eslint-disable no-unused-vars */
+    import Footer from '@/views/Footer.vue'
+
     export default {
         data() {
             return {
@@ -27,6 +29,9 @@
                 goTopArrowStyle: {color: 'rgba(178, 178, 178, 0) '},
                 iconSpecs: ['fa', 'arrow-circle-up'],
             }
+        },
+        components: {
+            Footer
         },
         methods: {
             setLoaded() {
@@ -68,7 +73,7 @@
                 }
             },
             onArrowClick() {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
+                window.scrollTo({top: 0, behavior: 'smooth'})
             },
             readPost(payload) {
             }
@@ -107,7 +112,7 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        padding-top: 4rem;
+        padding: 4rem 0 0 0 !important;
     }
 
     .prog-bar-container {
@@ -138,6 +143,12 @@
 
     html {
         background-color: rgba(244, 244, 244, 0.93);
+    }
+
+    * {
+        margin:0;
+        padding:0;
+        border:0;
     }
 
     ::selection {

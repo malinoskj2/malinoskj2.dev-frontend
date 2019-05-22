@@ -27,13 +27,13 @@
             </div>
 
             <div v-for="(post, index) in this.$store.getters.posts" :key="index" class="post-container">
-                <Post class="post" :id="post._id" :title="post.title" @read-post="(payload) => $emit('read-post', payload )">
+                <Post class="post" :id="post._id" :title="post.title"
+                      @read-post="(payload) => $emit('read-post', payload )">
                     <h1 slot="title" class="post-title"
                         @click="$emit('read-post', {title: post.title})">{{post.title}}</h1>
 
                     <span slot="date" class="post-date">{{post.publishedAt.format('MMMM-YYYY')}}</span>
                     <span slot="reading-time" class="count-value">:: {{post.readingStats.text.toUpperCase()}}</span>
-
 
                     <p slot="text" v-html="post.content" class="post-text"/>
                 </Post>
@@ -106,6 +106,7 @@
 
     .home {
         max-width: 700px;
+        min-height: 100vh;
         display: grid;
         grid-template-columns: 4fr;
         grid-template-rows: auto;

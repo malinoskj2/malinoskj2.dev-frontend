@@ -5,8 +5,12 @@
             <slot name="title" class="post-title"/>
         </router-link>
 
-        <slot name="date"/>
-        <slot name="reading-time"/>
+
+        <p class="sub-info-section">
+            <slot name="date"/>
+            <slot name="reading-time"/>
+        </p>
+
         <slot name="text"/>
 
         <router-link :to="postPath">
@@ -76,5 +80,6 @@
         color: inherit;
         text-decoration: none;
     }
+
 
 </style>

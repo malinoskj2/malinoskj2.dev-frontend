@@ -1,7 +1,7 @@
 <template>
 
     <div class="center-grid">
-        <div class="post">
+        <div class="post post-view">
             <h1 class="post-title">{{title}}</h1>
 
             <p class="sub-info-section">
@@ -11,9 +11,8 @@
 
             <p v-html="text" class="post-text"/>
 
-            <MediaIconGroup :iconDataObjects="mediaIcons"/>
+            <MediaIconGroup :iconDataObjects="mediaIcons" class="icon-group"/>
         </div>
-
     </div>
 
 </template>
@@ -92,8 +91,8 @@
 
 <style scoped>
 
-    .sub-info-section {
+    .post-view {
         padding-bottom: 2rem;
+        min-height: 100vh;
     }
-
 </style>
