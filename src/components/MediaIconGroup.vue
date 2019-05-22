@@ -1,6 +1,6 @@
 <template>
     <div class="share-icons">
-        <div v-for="(icon ,index) in iconDataObjects" :key="index">
+        <div v-for="(icon ,index) in mediaIconsComputed" :key="index">
             <a :href="icon.url">
                 <font-awesome-icon :icon="icon.iconSpecs" size="lg" :style="icon.style"/>
             </a>
@@ -9,14 +9,53 @@
 </template>
 
 <script>
+    const generateFBLink = (url) => {
+        return `https://www.facebook.com/sharer/sharer.php?u=http%3A//${url}/`
+    };
+
+    const generateTwitterShareLink = (url) => {
+        return `https://twitter.com/home?status=http%3A//${url}/`;
+    };
+
+    const generateRedditShareLink = (targetUrl, url, title) => {
+        return `http://${targetUrl}/submit?url=${url}&${encodeURIComponent(title)}`;
+    };
+
     export default {
         name: "MediaIconGroup",
         props: {
-            iconDataObjects: {
-                type: Array,
+            url: {
+                type: String,
                 required: true
             },
-        }
+            title: {
+                required: true,
+            }
+        },
+        computed: {
+            mediaIconsComputed() {
+                const facebookShareLink = generateFBLink(this.url);
+                const twitterShareLink = generateTwitterShareLink(this.url);
+                const redditShareLink =
+                    generateRedditShareLink('www.reddit.com', this.url, this.title);
+
+               return [
+                    {
+                        name: 'facebook', iconSpecs: ['fab', 'facebook-f'],
+                        style: {color: '#3B5998'}, url: facebookShareLink
+                    },
+                    {
+                        name: 'twitter', iconSpecs: ['fab', 'twitter'],
+                        style: {color: '#4AB3F4'}, url: twitterShareLink
+                    },
+                    {
+                        name: 'reddit', iconSpecs: ['fab', 'reddit'],
+                        style: {color: '#FF4500'}, url: redditShareLink
+                    },
+                ];
+            }
+        },
+
     }
 </script>
 

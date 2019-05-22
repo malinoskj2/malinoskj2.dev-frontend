@@ -5,13 +5,14 @@
             <slot name="title" class="post-title"/>
         </router-link>
 
-
         <p class="sub-info-section">
             <slot name="date"/>
             <slot name="reading-time"/>
         </p>
 
         <slot name="text"/>
+
+        <MediaIconGroup :title="title" :url="url"/>
 
         <router-link :to="postPath">
             <p id="expand-message" class="flex-center-item"
@@ -25,6 +26,8 @@
 </template>
 
 <script>
+    import MediaIconGroup from '@/components/MediaIconGroup.vue';
+
     export default {
         name: "Post",
         props: {
@@ -40,7 +43,14 @@
             title: {
                 type: String,
                 required: true,
-            }
+            },
+            url: {
+              type: String,
+              required: true,
+            },
+        },
+        components: {
+          MediaIconGroup
         },
         computed: {
             postPath() {
@@ -70,9 +80,6 @@
         flex-wrap: nowrap;
         justify-content: center;
         align-items: center;
-    }
-
-    .separator-container {
     }
 
     a {

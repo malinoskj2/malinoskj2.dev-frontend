@@ -32,7 +32,8 @@ export default new Vuex.Store({
                     ...post,
                     publishedAt: dayjs(post.publishedAt),
                     readingStats: readingTime(post.content),
-                    content: markdown.toHTML(post.content)
+                    content: markdown.toHTML(post.content),
+                    url: generatePostUrl(post)
                 }
             });
         }
@@ -44,7 +45,7 @@ export default new Vuex.Store({
         },
         async initPostById(context, payload) {
             const res = context.getters.postById(payload.id);
-            
+
             if (!res) {
                 const post = await getPostById(payload.id);
                 context.commit('setPosts', [post]);
@@ -61,4 +62,8 @@ const logPosts = (entries) => {
         console.log(`publishedAt: ${dayjs(entry.publishedAt).format('MMMM-YYYY')}`);
         console.log(`content: ${entry.content.substring(1, 10)}...`);
     })
+};
+
+const generatePostUrl = (post) => {
+  return `${process.env.VUE_APP_DOMAIN}/#/posts/${post._id}`;
 };

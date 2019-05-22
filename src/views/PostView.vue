@@ -10,8 +10,7 @@
             </p>
 
             <p v-html="text" class="post-text"/>
-
-            <MediaIconGroup :iconDataObjects="mediaIcons" class="icon-group"/>
+            <MediaIconGroup :title="title" :url="url" class="icon-group"/>
         </div>
     </div>
 
@@ -42,7 +41,6 @@
                 text: '',
                 readingStats: { text:'' },
                 url: '',
-                mediaIcons: [],
             }
         },
         components: {
@@ -57,34 +55,14 @@
                 await this.$store.dispatch('initPostById', {id: this.$route.params.id})
                     .catch(() => console.log('store failed to get post'));
 
-                const {title, publishedAt, content, readingStats} =
+                const {title, publishedAt, content, readingStats, url} =
                     this.$store.getters.postById(this.$route.params.id);
 
                 this.title = title;
                 this.date = publishedAt.format('MMMM-YYYY');
                 this.text = content;
                 this.readingStats = readingStats;
-                this.url = window.location.href;
-
-                const facebookShareLink = generateFBLink(window.location.href);
-                const twitterShareLink = generateTwitterShareLink(window.location.href);
-                const redditShareLink = generateRedditShareLink('www.reddit.com', window.location.href, title);
-
-                this.mediaIcons = [
-                    {
-                        name: 'facebook', iconSpecs: ['fab', 'facebook-f'],
-                        style: {color: '#3B5998'}, url: facebookShareLink
-                    },
-                    {
-                        name: 'twitter', iconSpecs: ['fab', 'twitter'],
-                        style: {color: '#4AB3F4'}, url: twitterShareLink
-                    },
-                    {
-                        name: 'reddit', iconSpecs: ['fab', 'reddit'],
-                        style: {color: '#FF4500'}, url: redditShareLink
-                    },
-                ];
-
+                this.url = url;
                 document.title = title;
             },
 

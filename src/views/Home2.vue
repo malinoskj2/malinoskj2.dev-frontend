@@ -27,14 +27,13 @@
             </div>
 
             <div v-for="(post, index) in this.$store.getters.posts" :key="index" class="post-container">
-                <Post class="post" :id="post._id" :title="post.title"
+                <Post class="post" :id="post._id" :title="post.title" :url="post.url"
                       @read-post="(payload) => $emit('read-post', payload )">
                     <h1 slot="title" class="post-title"
                         @click="$emit('read-post', {title: post.title})">{{post.title}}</h1>
 
                     <span slot="date" class="post-date">{{post.publishedAt.format('MMMM-YYYY')}}</span>
                     <span slot="reading-time" class="count-value">:: {{post.readingStats.text.toUpperCase()}}</span>
-
                     <div slot="text" v-html="post.content" class="post-text"/>
                 </Post>
             </div>
@@ -47,7 +46,6 @@
     import InfoCard from '@/components/InfoCard.vue'
     import Post from '@/components/Post.vue'
 
-    // <vue-simple-markdown slot="text" :source="post.content" class="post-text"/>
     export default {
         name: "Home2",
         data() {
@@ -80,7 +78,7 @@
         },
         components: {
             InfoCard,
-            Post
+            Post,
         },
         created() {
             document.title = "malinoskj2.dev";
@@ -95,7 +93,6 @@
                     .catch(() => "Failed to get content.");
             }
         }
-
     }
 </script>
 
