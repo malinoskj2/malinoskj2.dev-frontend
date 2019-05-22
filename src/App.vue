@@ -79,26 +79,12 @@
             }
         },
         mounted() {
-            //  [App.vue specific] When App.vue is finish loading finish the progress bar
-            this.$Progress.start();
-            setTimeout(() => {
-                this.$Progress.increase(20)
-            }, 20);
-            setTimeout(() => {
-                this.$Progress.increase(60)
-            }, 40);
-            setTimeout(() => {
-                this.$Progress.increase(100)
-            }, 80);
-            setTimeout(() => {
-                this.setLoaded();
-            });
-            // this.$Progress.finish();
+            this.$Progress.increase(100);
+            this.setLoaded();
         },
         created() {
-            //  [App.vue specific] When App.vue is first loaded start the progress bar
             this.$Progress.start();
-            this.$Progress.increase(100)
+            this.$Progress.increase(30);
         }
     }
 </script>

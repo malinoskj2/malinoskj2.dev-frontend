@@ -20,39 +20,33 @@ Vue.config.productionTip = false;
 
 console.log(`Current Environment: ${process.env.NODE_ENV}`);
 
-store.dispatch('initPosts')
-    .then(() => {
-        console.log("Dispatched successfully.");
-        console.log("Creating Vue instance.");
+const options = {
+    color: '#FF6663',
+    failedColor: '#874b4b',
+    thickness: '.25rem',
+    height: '2px',
+    transition: {
+        speed: '0.1s',
+        opacity: '0.6s',
+        termination: 300
+    },
+    autoRevert: false,
+    location: 'top',
+    inverse: false,
+    autoFinish: false
+};
 
-        const options = {
-            color: '#FF6663',
-            failedColor: '#874b4b',
-            thickness: '.25rem',
-            height: '2px',
-            transition: {
-                speed: '0.1s',
-                opacity: '0.6s',
-                termination: 300
-            },
-            autoRevert: false,
-            location: 'top',
-            inverse: false,
-            autoFinish: false
-        };
+Vue.use(VueProgressBar, options);
+Vue.use(ScrollView, {
+    throttle: 50,
+    callbacks: []
+});
 
-        Vue.use(VueProgressBar, options);
-        Vue.use(ScrollView, {
-            throttle: 50,
-            callbacks: []
-        });
+console.log("Creating Vue instance.");
+new Vue({
+    router,
+    store,
+    render: h => h(App)
+}).$mount('#app');
 
-        new Vue({
-            router,
-            store,
-            render: h => h(App)
-        }).$mount('#app');
-
-    })
-    .catch(() => "Failed to get content.");
 

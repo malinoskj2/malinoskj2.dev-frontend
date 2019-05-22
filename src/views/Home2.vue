@@ -82,7 +82,18 @@
             InfoCard,
             Post
         },
-        methods: {}
+        created() {
+            this.getContent();
+        },
+        methods: {
+            getContent() {
+                this.$store.dispatch('initPosts')
+                    .then(() => {
+                        console.log("Dispatched successfully.");
+                    })
+                    .catch(() => "Failed to get content.");
+            }
+        }
 
     }
 </script>
