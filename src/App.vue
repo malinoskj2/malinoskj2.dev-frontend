@@ -2,9 +2,11 @@
 
     <div id="app">
 
-        <transition name="slide-fade">
-            <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
-        </transition>
+            <router-link :to="{ name: 'home' }">
+                <transition name="slide-fade">
+                    <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
+                </transition>
+            </router-link>
 
         <transition name="slide-fade-arrow">
             <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
@@ -28,6 +30,7 @@
     export default {
         data() {
             return {
+
                 titleIsVisible: false,
                 isLoaded: true,
                 iconSpecs: ['fa', 'arrow-circle-up'],
@@ -97,6 +100,7 @@
         top: 0;
         left: 0;
         margin: .5rem 0 0 1rem;
+        padding-right: 1rem;
         z-index: 100;
 
         background-color: rgba(178, 178, 178, 0.93);
@@ -156,11 +160,14 @@
     .slide-fade-enter-active {
         transition: all .3s ease;
     }
+
     .slide-fade-leave-active {
         transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
+
     .slide-fade-enter, .slide-fade-leave-to
-        /* .slide-fade-leave-active below version 2.1.8 */ {
+        /* .slide-fade-leave-active below version 2.1.8 */
+    {
 
         transform: translateX(10px);
         filter: opacity(0);
@@ -170,11 +177,14 @@
     .slide-fade-arrow-enter-active {
         transition: all .3s ease;
     }
+
     .slide-fade-arrow-leave-active {
         transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
+
     .slide-fade-arrow-enter, .slide-fade-arrow-leave-to
-        /* .slide-fade-leave-active below version 2.1.8 */ {
+        /* .slide-fade-leave-active below version 2.1.8 */
+    {
         transform: translateX(10px);
         opacity: 0;
     }

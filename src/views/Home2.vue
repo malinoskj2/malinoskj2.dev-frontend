@@ -62,9 +62,9 @@
                     color: '#19323C'
                 },
                 linkPairs: [
-                    {name: "Home", link: "tempLinkA", count: 0},
-                    {name: "Posts", link: "tempLinkB", count: 1},
-                    {name: "About", link: "tempLinkB", count: 0},
+                    {name: "Home", link: "tempLinkA", path: {name: 'home'}, count: 0},
+                    {name: "Posts", link: "tempLinkB", path: {name: 'home'}, count: 1},
+                    {name: "About", link: "tempLinkB", path: {name: 'home'}, count: 0},
                 ],
                 linkStyle: {
                     fontFamily: "Fira Mono, monospace",

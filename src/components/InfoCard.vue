@@ -7,7 +7,9 @@
             <div :style="linkStyle">
                 <span v-for="(link, index) in linkPairs" :key="index">
                     <span class="link-group">
-                        <span class="link">{{link.name}}</span>
+                        <router-link :to="link.path" class="reset-a">
+                            <span class="link">{{link.name}}</span>
+                        </router-link>
                         <span v-if="link.count > 0" class="count-value">{{link.count}}</span>
                     </span>
                     <span v-if="index !== ( linkPairs.length - 1 )" class="delimiter">{{delimiter}}</span>
