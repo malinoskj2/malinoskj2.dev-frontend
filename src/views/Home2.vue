@@ -27,15 +27,8 @@
             </div>
 
             <div v-for="(post, index) in this.$store.getters.posts" :key="index" class="post-container">
-                <Post class="post" :id="post._id" :title="post.title" :url="post.url"
-                      @read-post="(payload) => $emit('read-post', payload )">
-                    <h1 slot="title" class="post-title"
-                        @click="$emit('read-post', {title: post.title})">{{post.title}}</h1>
-
-                    <span slot="date" class="post-date">{{post.publishedAt.format('MMMM-YYYY')}}</span>
-                    <span slot="reading-time" class="count-value">:: {{post.readingStats.text.toUpperCase()}}</span>
-                    <div slot="text" v-html="post.content" class="post-text"/>
-                </Post>
+                <PostView :postId="post._id" :clickable-title="true"
+                          :show-expand-message="true" :show-post-divider="true" :condensed="true"/>
             </div>
 
         </div>
@@ -44,7 +37,7 @@
 
 <script>
     import InfoCard from '@/components/InfoCard.vue'
-    import Post from '@/components/Post.vue'
+    import PostView from "./PostView";
 
     export default {
         name: "Home2",
@@ -77,8 +70,8 @@
             }
         },
         components: {
+            PostView,
             InfoCard,
-            Post,
         },
         created() {
             document.title = "malinoskj2.dev";
@@ -100,6 +93,14 @@
         margin-right: 2rem;
         height: 10rem;
         border-radius: 10px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        user-drag: none;
+        -webkit-touch-callout: none;
+        pointer-events: none;
     }
 
     #info-card {
@@ -107,10 +108,7 @@
         width: 540px;
     }
 
-    .post-title:hover {
-        cursor: pointer;
-        color: #FF6663;
-    }
+
 
     .home {
         max-width: 700px;

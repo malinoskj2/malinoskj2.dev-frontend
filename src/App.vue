@@ -2,15 +2,15 @@
 
     <div id="app" class="app-container">
         <div>
-            <router-link :to="{ name: 'home' }">
+            <router-link :to="{ name: 'home' }" draggable="false" class="reset-a no-outline">
                 <transition name="slide-fade">
-                    <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
+                    <h2 v-show="titleIsVisible" id="site-title" class="no-outline">malinoskj2.dev</h2>
                 </transition>
             </router-link>
 
             <transition name="slide-fade-arrow">
                 <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
-                                   id="go-top-arrow" @click="onArrowClick"/>
+                                   id="go-top-arrow" @click="onArrowClick" draggable="false"/>
             </transition>
 
             <div class="prog-bar-container">
@@ -20,7 +20,7 @@
             <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
         </div>
 
-        <Footer :socialMediaLinkData="socialMediaLinkData"/>
+        <Footer :socialMediaLinkData="socialMediaLinkData" id="footer"/>
     </div>
 
 </template>
@@ -219,5 +219,9 @@
         display: grid;
         grid-template-rows: auto 1fr auto;
         grid-template-columns: 100%;
+    }
+
+    #footer {
+        margin-left: 1rem;
     }
 </style>
