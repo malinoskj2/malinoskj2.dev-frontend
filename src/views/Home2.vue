@@ -103,6 +103,7 @@
     }
 
     #info-card {
+        margin-left: 1rem;
         width: 540px;
     }
 

@@ -12,7 +12,7 @@
 
         <slot name="text"/>
 
-        <MediaIconGroup :title="title" :url="url"/>
+        <MediaIconGroup :title="title" :url="url" class="icon-group"/>
 
         <router-link :to="postPath">
             <p id="expand-message" class="flex-center-item"
