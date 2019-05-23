@@ -82,14 +82,12 @@
         },
         created() {
             document.title = "malinoskj2.dev";
-            this.getContent();
+            this.initPosts();
         },
         methods: {
-            getContent() {
+            initPosts() {
                 this.$store.dispatch('initPosts')
-                    .then(() => {
-                        console.log("Dispatched successfully.");
-                    })
+                    .then(() => console.log('Dispatched successfully.'))
                     .catch(() => "Failed to get content.");
             }
         }

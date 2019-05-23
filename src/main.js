@@ -20,7 +20,12 @@ Vue.config.productionTip = false;
 
 console.log(`Current Environment: ${process.env.NODE_ENV}`);
 
-const opt = {
+Vue.use(Toasted, {
+    position: 'bottom-center', duration: 3000,
+    className: 'j2-notification', containerClass: 'j2-notification-container'
+});
+
+Vue.use(VueProgressBar, {
     color: '#FF6663',
     failedColor: '#874b4b',
     thickness: '.25rem',
@@ -33,21 +38,17 @@ const opt = {
         opacity: '0.6s',
         termination: 300
     },
-};
+});
 
-Vue.use(Toasted, { position: 'bottom-center', duration: 3000,
-    className: 'j2-notification', containerClass: 'j2-notification-container'});
-Vue.use(VueProgressBar, opt);
 Vue.use(ScrollView, {
     throttle: 50,
     callbacks: []
 });
 
 console.log("Creating Vue instance.");
+
 new Vue({
     router,
     store,
     render: h => h(App)
 }).$mount('#app');
-
-

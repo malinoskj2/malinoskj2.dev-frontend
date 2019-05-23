@@ -1,22 +1,24 @@
 <template>
 
-    <div id="app">
-        <router-link :to="{ name: 'home' }">
-            <transition name="slide-fade">
-                <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
+    <div id="app" class="app-container">
+        <div>
+            <router-link :to="{ name: 'home' }">
+                <transition name="slide-fade">
+                    <h2 v-show="titleIsVisible" id="site-title">malinoskj2.dev</h2>
+                </transition>
+            </router-link>
+
+            <transition name="slide-fade-arrow">
+                <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
+                                   id="go-top-arrow" @click="onArrowClick"/>
             </transition>
-        </router-link>
 
-        <transition name="slide-fade-arrow">
-            <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
-                               id="go-top-arrow" @click="onArrowClick"/>
-        </transition>
+            <div class="prog-bar-container">
+                <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"/>
+            </div>
 
-        <div class="prog-bar-container">
-            <vue-progress-bar :class="{'top-border': isLoaded }" class="prog-bar"/>
+            <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
         </div>
-
-        <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
 
         <Footer :socialMediaLinkData="socialMediaLinkData"/>
     </div>
@@ -210,4 +212,12 @@
         filter: opacity(0);
     }
 
+    /* layout */
+
+    .app-container {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 100%;
+    }
 </style>
