@@ -37,7 +37,7 @@
 
 <script>
     import InfoCard from '@/components/InfoCard.vue'
-    import PostView from "./PostView";
+    import PostView from "../components/Post";
 
     export default {
         name: "Home2",

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Home2 = () => import('./views/Home2.vue');
-const PostView = () => import('./views/PostView.vue');
+const PostView = () => import('./components/Post.vue');
 
 Vue.use(Router);
 
