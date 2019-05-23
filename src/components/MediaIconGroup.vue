@@ -10,11 +10,12 @@
 
 <script>
     const generateFBLink = (url) => {
-        return `https://www.facebook.com/sharer/sharer.php?u=http%3A//${url}/`
+        return `https://www.facebook.com/sharer/sharer.php?u=https://${url}/`
     };
 
-    const generateTwitterShareLink = (url) => {
-        return `https://twitter.com/home?status=http%3A//${url}/`;
+    const generateTwitterShareLink = (url, title) => {
+        const tweetString = `${title} on ${url} is awesome!`;
+        return encodeURI(`https://twitter.com/intent/tweet?url=${url}&text=${tweetString}`);
     };
 
     const generateRedditShareLink = (targetUrl, url, title) => {
@@ -35,7 +36,7 @@
         computed: {
             mediaIconsComputed() {
                 const facebookShareLink = generateFBLink(this.url);
-                const twitterShareLink = generateTwitterShareLink(this.url);
+                const twitterShareLink = generateTwitterShareLink(this.url, this.title);
                 const redditShareLink =
                     generateRedditShareLink('www.reddit.com', this.url, this.title);
 
