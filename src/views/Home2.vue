@@ -4,7 +4,8 @@
 
             <div id="card-container">
 
-                <InfoCard :description="description" :descriptionStyle="descriptionStyle"
+                <InfoCard v-responsive="['hidden-xs', 'hidden-sm']"
+                        :description="description" :descriptionStyle="descriptionStyle"
                           :linkPairs="linkPairs" :linkStyle="linkStyle" id="info-card">
 
                     <img alt="avatar image" slot="image" id="avatar-image"
@@ -22,13 +23,14 @@
                                 @isVisible="$emit('hide-nav')"
                                 @isNotVisible="$emit('show-nav')"
                         ></scroll-marker>
-                    </template>
+                        </template>
                 </scroll-view>
             </div>
 
             <div v-for="(post, index) in this.$store.getters.posts" :key="index" class="post-container">
                 <PostView :postId="post._id" :clickable-title="true"
-                          :show-expand-message="true" :show-post-divider="true" :condensed="true"/>
+                          :show-expand-message="true" :show-post-divider="true"
+                          :condensed="true" :show-media-icons="false"/>
             </div>
 
         </div>
@@ -107,8 +109,6 @@
         margin-left: 1rem;
         width: 540px;
     }
-
-
 
     .home {
         max-width: 700px;

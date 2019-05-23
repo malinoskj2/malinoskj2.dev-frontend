@@ -1,7 +1,7 @@
 <template>
 
     <div class="center-grid">
-        <div class="post post-view">
+        <div class="post post-view" :class="{'expand-margin' : !condensed}">
             <router-link :to="postPath" class="reset-a" draggable="false">
                 <h1 class="post-title" :class="{'clickable-title': clickableTitle,
                 'default-cursor': !clickableTitle}">{{title}}</h1>
@@ -19,12 +19,14 @@
                  'condensed-show-third': condensedCount >=3,
                   'condensed-show-fourth': condensedCount >=4 }"/>
 
-            <MediaIconGroup :title="title" :url="url" class="icon-group"/>
 
-            <router-link :to="postPath" v-if="showExpandMessage">
-                <p id="expand-message" class="flex-center-item"
-                   @click="$emit('read-post', {title: title})">{{expandMessage}}</p>
-            </router-link>
+            <MediaIconGroup v-if="showMediaIcons"  :title="title" :url="url" class="icon-group"/>
+            <div>
+                <router-link :to="postPath" v-if="showExpandMessage">
+                    <p id="expand-message" class="flex-center-item"
+                       @click="$emit('read-post', {title: title})">{{expandMessage}}</p>
+                </router-link>
+            </div>
 
             <div class="separator-container flex-center-item" v-if="showPostDivider">
                 <img alt="post separator" src="@/assets/Line.svg" id="separator"/>
@@ -90,6 +92,11 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            showMediaIcons: {
+              type: Boolean,
+              required: false,
+              default: true
             },
             condensed: {
                 type: Boolean,
@@ -195,7 +202,7 @@
 
     .fade-out {
         position: relative;
-        max-height: 600px;
+        max-height: 1200px;
     }
 
     .fade-out:after {
@@ -206,5 +213,9 @@
         left: 0;
         right: 0;
         background-image: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(244, 244, 244, 0.93) 100%);
+    }
+
+    .expand-margin{
+        margin-top: 4rem;
     }
 </style>

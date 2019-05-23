@@ -2,11 +2,17 @@
 
     <div id="app" class="app-container">
         <div>
-            <router-link :to="{ name: 'home' }" draggable="false" class="reset-a no-outline">
-                <transition name="slide-fade">
-                    <h2 v-show="titleIsVisible" id="site-title" class="no-outline">malinoskj2.dev</h2>
-                </transition>
-            </router-link>
+                <router-link v-responsive.lg.xl :to="{ name: 'home' }" draggable="false" class="reset-a no-outline">
+                    <transition name="slide-fade">
+                        <h2 v-show="titleIsVisible" id="site-title" class="no-outline">malinoskj2.dev</h2>
+                    </transition>
+                </router-link>
+
+                <div class="site-title-sm-container">
+                    <router-link  v-responsive.sm.xs :to="{ name: 'home' }" draggable="false" class="reset-a no-outline">
+                        <h2  id="site-title-sm" class="no-outline">malinoskj2.dev</h2>
+                    </router-link>
+                </div>
 
             <transition name="slide-fade-arrow">
                 <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
@@ -93,6 +99,27 @@
         z-index: 50;
     }
 
+    .site-title-sm-container {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    #site-title-sm {
+
+        transition: 300ms all;
+        font-family: 'Mukta', sans-serif;
+        font-size: 2.5rem;
+        color: transparent;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        z-index: 100;
+
+        background-color: rgba(178, 178, 178, 0.93);
+        text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
+    }
+
     #site-title {
         transition: 300ms all;
         font-family: 'Mukta', sans-serif;
@@ -105,14 +132,14 @@
         top: 0;
         left: 0;
         margin: .5rem 0 0 1rem;
-        padding-right: 1rem;
+        padding: 0 1rem 0 0;
         z-index: 100;
 
         background-color: rgba(178, 178, 178, 0.93);
         text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
     }
 
-    #site-title:hover {
+    #site-title:hover, #site-title-sm:hover {
         background-color: rgba(255, 102, 99, 0.85);
         text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
         cursor: pointer;
@@ -224,4 +251,6 @@
     #footer {
         margin-left: 1rem;
     }
+
+
 </style>

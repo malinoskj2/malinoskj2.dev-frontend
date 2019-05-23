@@ -1,26 +1,23 @@
 <template>
     <div class="share-icons">
         <div v-for="(icon ,index) in mediaIconsComputed" :key="index">
-            <a :href="icon.url">
-                <font-awesome-icon :icon="icon.iconSpecs" size="lg" :style="icon.style"/>
-            </a>
+            <social-sharing :url="url"
+                            :title="title"
+                            :description="title"
+                            :quote="title"
+                            inline-template>
+                <div>
+                    <network :network="icon.name">
+                        <font-awesome-icon :icon="icon.iconSpecs" size="lg" :style="icon.style"/>
+                    </network>
+                </div> </social-sharing>
         </div>
+        
     </div>
 </template>
 
 <script>
-    const generateFBLink = (url) => {
-        return `https://www.facebook.com/sharer/sharer.php?u=https://${url}/`
-    };
 
-    const generateTwitterShareLink = (url, title) => {
-        const tweetString = `${title} on ${url} is awesome!`;
-        return encodeURI(`https://twitter.com/intent/tweet?url=${url}&text=${tweetString}`);
-    };
-
-    const generateRedditShareLink = (targetUrl, url, title) => {
-        return `http://${targetUrl}/submit?url=${url}&${encodeURIComponent(title)}`;
-    };
 
     export default {
         name: "MediaIconGroup",
@@ -33,28 +30,43 @@
                 required: true,
             }
         },
+        components : {
+        },
+        methods: {
+            shareLink(websiteName, url, title) {
+                console.log('called share link');
+                switch (websiteName) {
+                    case "facebook":
+                        return `https://www.facebook.com/sharer/sharer.php?u=https://${url}/`;
+                    case "twitter":
+                        return (function () {
+                            const tweetString = `${title} on ${url} is awesome!`;
+                            return encodeURI(`https://twitter.com/intent/tweet?url=${url}&text=${tweetString}`);
+                        })();
+                    case "reddit":
+                        return `http://www.reddit.com/submit?url=${url}&${encodeURIComponent(title)}`;
+                    default:
+                        return "unknown website";
+                }
+            }
+        },
         computed: {
             mediaIconsComputed() {
-                const facebookShareLink = generateFBLink(this.url);
-                const twitterShareLink = generateTwitterShareLink(this.url, this.title);
-                const redditShareLink =
-                    generateRedditShareLink('www.reddit.com', this.url, this.title);
-
-               return [
+                return [
                     {
                         name: 'facebook', iconSpecs: ['fab', 'facebook-f'],
-                        style: {color: '#3B5998'}, url: facebookShareLink
+                        style: {color: '#3B5998'}
                     },
                     {
                         name: 'twitter', iconSpecs: ['fab', 'twitter'],
-                        style: {color: '#4AB3F4'}, url: twitterShareLink
+                        style: {color: '#4AB3F4'}
                     },
                     {
                         name: 'reddit', iconSpecs: ['fab', 'reddit'],
-                        style: {color: '#FF4500'}, url: redditShareLink
+                        style: {color: '#FF4500'}
                     },
                 ];
-            }
+            },
         },
 
     }

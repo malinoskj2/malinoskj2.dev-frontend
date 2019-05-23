@@ -11,6 +11,9 @@ import VueProgressBar from 'vue-progressbar'
 import ScrollView from 'vue-scrollview'
 import "@/assets/css/styles.css"
 import Toasted from 'vue-toasted';
+import SocialSharing from 'vue-social-sharing';
+import responsive from 'vue-responsive'
+
 
 library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp, faFacebookF, faTwitter, faReddit);
 
@@ -44,6 +47,9 @@ Vue.use(ScrollView, {
     throttle: 50,
     callbacks: []
 });
+
+Vue.use(SocialSharing);
+Vue.use(responsive);
 
 console.log("Creating Vue instance.");
 
