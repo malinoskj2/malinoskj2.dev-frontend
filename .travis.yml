@@ -2,9 +2,6 @@ language: node_js
 node_js:
 - stable
 cache: npm
-matrix:
-  allow_failures:
-  - node_js: stable
 addons:
   apt: 
     packages:
