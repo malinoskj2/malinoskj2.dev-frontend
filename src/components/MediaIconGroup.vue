@@ -12,13 +12,11 @@
                     </network>
                 </div> </social-sharing>
         </div>
-        
+
     </div>
 </template>
 
 <script>
-
-
     export default {
         name: "MediaIconGroup",
         props: {
@@ -28,26 +26,6 @@
             },
             title: {
                 required: true,
-            }
-        },
-        components : {
-        },
-        methods: {
-            shareLink(websiteName, url, title) {
-                console.log('called share link');
-                switch (websiteName) {
-                    case "facebook":
-                        return `https://www.facebook.com/sharer/sharer.php?u=https://${url}/`;
-                    case "twitter":
-                        return (function () {
-                            const tweetString = `${title} on ${url} is awesome!`;
-                            return encodeURI(`https://twitter.com/intent/tweet?url=${url}&text=${tweetString}`);
-                        })();
-                    case "reddit":
-                        return `http://www.reddit.com/submit?url=${url}&${encodeURIComponent(title)}`;
-                    default:
-                        return "unknown website";
-                }
             }
         },
         computed: {
@@ -92,5 +70,4 @@
         cursor: pointer;
         filter: saturate(.5) opacity(1) drop-shadow(0px 0px 4px rgba(12, 7, 38, 0.0));
     }
-
 </style>

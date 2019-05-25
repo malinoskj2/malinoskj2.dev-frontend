@@ -1,9 +1,0 @@
-version: '3'
-services:
-    malinoskj2.dev-dist:
-        container_name: malinoskj2.dev-dist
-        build: 
-                context: .
-                dockerfile: Dockerfile
-        volumes:
-                - ./:/done/dist
