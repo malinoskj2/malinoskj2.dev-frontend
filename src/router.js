@@ -9,6 +9,7 @@ const Soft404 = () => import('./views/Soft404.vue');
 Vue.use(Router);
 
 export default new Router({
+    mode: 'history',
     scrollBehavior() {
         return {x: 0, y: 0};
     },
