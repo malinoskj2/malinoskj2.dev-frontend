@@ -25,8 +25,10 @@
 
             <router-view @show-nav="showNav()" @hide-nav="hideNav()"/>
         </div>
+        <transition appear name="basic-fade">
+            <Footer v-if="footerIsVisible" :socialMediaLinkData="socialMediaLinkData" id="footer"/>
+        </transition>
 
-        <Footer :socialMediaLinkData="socialMediaLinkData" id="footer"/>
     </div>
 
 </template>
@@ -37,6 +39,7 @@
     export default {
         data() {
             return {
+                footerIsVisible: true,
                 titleIsVisible: false,
                 isLoaded: true,
                 iconSpecs: ['fa', 'arrow-circle-up'],
@@ -77,6 +80,13 @@
         created() {
             this.$Progress.start();
             this.initRouteHooks();
+        },
+        watch:{
+            '$route' (to, from){
+               if(to.name === '404')  {
+                   this.footerIsVisible = false;
+               }
+            }
         }
     }
 </script>

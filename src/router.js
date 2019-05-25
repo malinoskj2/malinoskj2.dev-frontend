@@ -1,10 +1,10 @@
-/* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
 
 const Home2 = () => import('./views/Home2.vue');
 const PostView = () => import('./components/Post.vue');
+const Soft404 = () => import('./views/Soft404.vue');
 
 Vue.use(Router);
 
@@ -23,12 +23,17 @@ export default new Router({
             name: 'post-view',
             component: PostView,
             beforeEnter: (to, from, next) => {
-                redirectIfNonexistent(postIdFromPath(to.path), '/', next);
+                redirectIfNonexistent(postIdFromPath(to.path), '/404', next);
             }
         },
         {
             path: '*',
-            redirect: { name: 'home' }
+            redirect: { name: '404' }
+        },
+        {
+            path: '/404',
+            name: '404',
+            component: Soft404
         }
     ]
 });
@@ -36,7 +41,7 @@ export default new Router({
 const redirectIfNonexistent = (id, redirectPath, next) => {
     if (!storeContainsPost(id)) {
         store.dispatch('initPosts')
-            .then(res => {
+            .then(() => {
                 if (storeContainsPost(id)) {
                     next();
                 } else {
