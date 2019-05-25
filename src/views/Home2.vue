@@ -43,6 +43,11 @@
 
     export default {
         name: "Home2",
+        metaInfo() {
+            return {
+                title: process.env.VUE_APP_DOMAIN
+            }
+        },
         data() {
             return {
                 description: 'Hello, I’m Jesse Malinosky, developer and student.' +

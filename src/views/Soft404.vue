@@ -8,7 +8,15 @@
 
 <script>
     export default {
-        name: "Soft404"
+        name: "Soft404",
+        metaInfo: {
+            title: '404 Not Found',
+            content: 'noindex',
+            htmlAttrs: {
+                lang: 'en',
+                amp: false
+            }
+        }
     }
 </script>
 

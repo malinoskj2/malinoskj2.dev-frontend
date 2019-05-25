@@ -20,7 +20,7 @@
                   'condensed-show-fourth': condensedCount >=4 }"/>
 
 
-            <MediaIconGroup v-if="showMediaIcons"  :title="title" :url="url" class="icon-group"/>
+            <MediaIconGroup v-if="showMediaIcons" :title="title" :url="url" class="icon-group"/>
             <div>
                 <router-link :to="postPath" v-if="showExpandMessage">
                     <p id="expand-message" class="flex-center-item"
@@ -55,6 +55,11 @@
 
     export default {
         name: "PostView",
+        metaInfo() {
+            return {
+                title: this.metaDataTitle()
+            }
+        },
         data() {
             return {
                 id: '',
@@ -94,9 +99,9 @@
                 default: false
             },
             showMediaIcons: {
-              type: Boolean,
-              required: false,
-              default: true
+                type: Boolean,
+                required: false,
+                default: true
             },
             condensed: {
                 type: Boolean,
@@ -126,8 +131,10 @@
                 this.readingStats = readingStats;
                 this.url = url;
                 this.id = _id;
-                document.title = title;
             },
+            metaDataTitle () {
+                return this.$route.path == '/' ? undefined : this.title;
+            }
         },
         computed: {
             postPath() {
@@ -215,7 +222,7 @@
         background-image: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(244, 244, 244, 0.93) 100%);
     }
 
-    .expand-margin{
+    .expand-margin {
         margin-top: 4rem;
     }
 </style>

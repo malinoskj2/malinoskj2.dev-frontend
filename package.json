@@ -7,8 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "analyze": "webpack-bundle-analyzer dist/stats.json",
-    "deploy" : "sls client deploy",
-    "config-creds" : "serverless config credentials --provider aws --key $SERVERLESS_KEY --secret $SERVERLESS_SECRET"
+    "deploy": "sls client deploy",
+    "config-creds": "serverless config credentials --provider aws --key $SERVERLESS_KEY --secret $SERVERLESS_SECRET"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
@@ -22,6 +22,7 @@
     "reading-time": "^1.2.0",
     "serverless-finch": "^2.4.2",
     "vue": "^2.6.10",
+    "vue-meta": "^1.6.0",
     "vue-progressbar": "^0.7.5",
     "vue-responsive": "^1.1.0",
     "vue-router": "^3.0.3",

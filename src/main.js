@@ -13,7 +13,7 @@ import "@/assets/css/styles.css"
 import Toasted from 'vue-toasted';
 import SocialSharing from 'vue-social-sharing';
 import responsive from 'vue-responsive'
-
+import VueMeta from 'vue-meta'
 
 library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp, faFacebookF, faTwitter, faReddit);
 
@@ -50,6 +50,10 @@ Vue.use(ScrollView, {
 
 Vue.use(SocialSharing);
 Vue.use(responsive);
+Vue.use(VueMeta, {
+    // optional pluginOptions
+    refreshOnceOnNavigation: true
+});
 
 console.log("Creating Vue instance.");
 

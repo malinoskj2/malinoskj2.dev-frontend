@@ -12,6 +12,8 @@ custom:
   client:
         distributionFolder: dist
         bucketName: frontend-dist
+        indexDocument: index.html
+        errorDocument: index.html 
 provider:
   name: aws
   runtime: nodejs8.10
