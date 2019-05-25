@@ -1,0 +1,6 @@
+/* view components dont generate actual tag */
+.router-link {
+    color: inherit;
+    text-decoration: inherit;
+    outline: none;
+}

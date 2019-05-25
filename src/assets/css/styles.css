@@ -1,8 +1,3 @@
-.count-value {
-    color: #19193A;
-    margin-left: .5rem;
-}
-
 .center-grid {
     display: flex;
     flex-direction: row;
@@ -12,11 +7,6 @@
 
 .post {
     text-align: left;
-    max-width: 700px;
-}
-
-.post > * {
-    margin: 0 1rem 0 1rem;
 }
 
 .post-text {
@@ -30,6 +20,7 @@
 
 .post-text > * {
     margin-bottom: 1rem;
+    pointer-events: none;
 }
 
 .post-date {
@@ -51,17 +42,12 @@
     font-size: 36px;
     line-height: 43px;
     color: #19193A;
-    margin: 0 0 1rem 1rem;
     padding-bottom: 0;
 }
 
 .sub-info-section {
+    margin-top: 0rem;
     padding-bottom: 2rem;
-}
-
-.reset-a {
-    color: inherit; /* blue colors for links too */
-    text-decoration: inherit; /* no underline */
 }
 
 .j2-notification {
@@ -79,26 +65,44 @@
 }
 
 .icon-group {
-    padding-left: 1rem;
+    padding-left: 0rem;
 }
 
-img {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-user-drag: none;
-    user-drag: none;
-    -webkit-touch-callout: none;
+.inset-shadow-header {
+    transition: 300ms all;
+    font-family: 'Mukta', sans-serif;
+
+    color: transparent;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+
+    background-color: rgba(178, 178, 178, 0.93);
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
 }
 
-.no-outline {
-    outline: none;
+.inset-shadow-header:hover {
+    background-color: rgba(255, 102, 99, 0.85);
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, .5);
+    cursor: pointer;
 }
 
-.basic-fade-enter-active, .basic-fade-leave-active {
-    transition: opacity .5s;
+.light-gray-text {
+    vertical-align: super;
+    font-size: .75rem;
+    color: rgba(25, 50, 60, 0.4);
+    margin-left: 0rem;
+    text-decoration: none;
 }
-.basic-fade-enter, .basic-fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
+
+.light-pink-ss {
+    vertical-align: super;
+    font-size: .75rem;
+    color: rgba(255, 102, 99, 0.59);
+    margin-left: 0rem;
+    text-decoration: none;
+}
+
+.main-fg-text-color {
+    color: #2c3e50;
 }

@@ -15,12 +15,12 @@
 
             <div class="license-info-line">
                 <p class="copyright-notice">all content licensed under</p>
-                <a :href="contentLicenseLink" class="reset-a copyright-notice">cc-sa-3</a>
+                <a :href="contentCopyright" class="reset-a copyright-notice">cc-sa-3</a>
             </div>
 
             <div class="license-info-line">
                 <p class="copyright-notice">code licensed under</p>
-                <a :href="codeLicenseLink" class="reset-a copyright-notice">bsd-2-clause</a>
+                <a :href="codeCopyright" class="reset-a copyright-notice">bsd-2-clause</a>
             </div>
 
         </div>
@@ -33,8 +33,8 @@
         name: "Footer",
         data() {
             return {
-                contentLicenseLink: 'https://creativecommons.org/licenses/by-sa/3.0/',
-                codeLicenseLink: 'https://opensource.org/licenses/BSD-2-Clause'
+                contentCopyright: process.env.VUE_APP_CONTENT_COPY,
+                codeCopyright: process.env.VUE_APP_CODE_COPY,
             };
         },
         props: {
@@ -58,7 +58,6 @@
         min-height: 10rem;
         margin: auto;
         padding-bottom: 3rem;
-        max-width: 700px;
 
         display: flex;
         flex-direction: column;
@@ -73,11 +72,9 @@
     }
 
     .copyright-notice {
-        margin-right: .75rem;
     }
 
     .media-link {
-        margin-right: .5rem;
         font-size: 1rem;
         color: rgba(25, 50, 60, 0.45);
         filter: saturate(0) opacity(.7) drop-shadow(0px 0px 20px rgba(12, 0, 38, 0.61));
@@ -112,7 +109,6 @@
         font-weight: 600;
         color: rgba(25, 50, 60, 0.30);
         text-decoration: none;
-        margin-left: -.25rem;
     }
 
     .license-info-line > a:hover {;

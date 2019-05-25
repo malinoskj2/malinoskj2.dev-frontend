@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import "@/assets/css/styles.css"
+import "@/assets/css/animations.css"
+import "@/assets/css/util.css"
+import "@/assets/css/reset.css"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faGithub, faGitlab, faFacebookF, faTwitter, faReddit} from '@fortawesome/free-brands-svg-icons'
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons/faEnvelope";
@@ -9,7 +13,6 @@ import {faArrowCircleUp} from "@fortawesome/free-solid-svg-icons/faArrowCircleUp
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import VueProgressBar from 'vue-progressbar'
 import ScrollView from 'vue-scrollview'
-import "@/assets/css/styles.css"
 import Toasted from 'vue-toasted';
 import SocialSharing from 'vue-social-sharing';
 import responsive from 'vue-responsive'

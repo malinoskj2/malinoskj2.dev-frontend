@@ -11,6 +11,7 @@ const markdown = require( "markdown" ).markdown;
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
+        sessionStartTime: dayjs(),
         posts: [],
     },
     getters: {

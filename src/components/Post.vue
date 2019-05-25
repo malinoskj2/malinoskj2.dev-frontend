@@ -1,7 +1,7 @@
 <template>
 
-    <div class="center-grid">
-        <div class="post post-view" :class="{'expand-margin' : !condensed}">
+    <div class="center-grid" draggable="false">
+        <div class="post post-view" draggable="false">
             <router-link :to="postPath" class="reset-a" draggable="false">
                 <h1 class="post-title" :class="{'clickable-title': clickableTitle,
                 'default-cursor': !clickableTitle}">{{title}}</h1>
@@ -9,7 +9,7 @@
 
             <p class="sub-info-section">
                 <span class="post-date">{{date}}</span>
-                <span class="reading-time count-value">:: {{readingStats.text.toUpperCase()}}</span>
+                <span class="reading-time reading-text-style">:: {{readingStats.text.toUpperCase()}}</span>
             </p>
 
             <p v-html="text" class="post-text" draggable="false"
@@ -18,7 +18,6 @@
                 'condensed-show-second': condensedCount >=2,
                  'condensed-show-third': condensedCount >=3,
                   'condensed-show-fourth': condensedCount >=4 }"/>
-
 
             <MediaIconGroup v-if="showMediaIcons" :title="title" :url="url" class="icon-group"/>
             <div>
@@ -40,18 +39,6 @@
 <script>
     /* eslint-disable no-unused-vars */
     import MediaIconGroup from '@/components/MediaIconGroup.vue';
-
-    const generateFBLink = (url) => {
-        return `https://www.facebook.com/sharer/sharer.php?u=http%3A//${url}/`
-    };
-
-    const generateTwitterShareLink = (url) => {
-        return `https://twitter.com/home?status=http%3A//${url}/`;
-    };
-
-    const generateRedditShareLink = (targetUrl, url, title) => {
-        return `http://${targetUrl}/submit?url=${url}&${encodeURIComponent(title)}`;
-    };
 
     export default {
         name: "PostView",
@@ -148,7 +135,6 @@
 
     .post-view {
         padding-bottom: 2rem;
-        min-height: 100vh;
     }
 
     .clickable-title:hover {
@@ -159,7 +145,6 @@
     .default-cursor {
         cursor: default;
     }
-
 
     #expand-message {
         font-family: 'Fira Mono', monospace;
@@ -222,7 +207,8 @@
         background-image: linear-gradient(rgba(255, 255, 255, 0) 50%, rgba(244, 244, 244, 0.93) 100%);
     }
 
-    .expand-margin {
-        margin-top: 4rem;
+    .reading-text-style {
+        color: #19193A;
+        margin-left: .5rem;
     }
 </style>

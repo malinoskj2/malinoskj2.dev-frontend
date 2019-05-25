@@ -10,7 +10,7 @@
                         <router-link :to="link.path" class="reset-a">
                             <span class="link" @click="notify(link.name)">{{link.name}}</span>
                         </router-link>
-                        <span v-if="link.count > 0" class="count-value">{{link.count}}</span>
+                        <span v-if="link.count > 0" class="light-gray-text">{{link.count}}</span>
                     </span>
                     <span v-if="index !== ( linkPairs.length - 1 )" class="delimiter">{{delimiter}}</span>
                 </span>
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-    /* eslint-disable no-empty */
 
     export default {
         name: "InfoCard",
@@ -64,7 +63,6 @@
 </script>
 
 <style scoped>
-
 
     .delimiter {
         margin-right: 1rem;
@@ -112,11 +110,4 @@
         text-decoration: none;
     }
 
-    .count-value {
-        vertical-align: super;
-        font-size: .75rem;
-        color: rgba(25, 50, 60, 0.4);
-        margin-left: 0rem;
-        text-decoration: none;
-    }
 </style>

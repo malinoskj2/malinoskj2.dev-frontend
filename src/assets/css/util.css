@@ -1,0 +1,12 @@
+.no-outline {
+    outline: none;
+}
+
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.reset-a {
+    color: inherit;
+    text-decoration: inherit;
+}

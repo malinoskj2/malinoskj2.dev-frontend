@@ -1,24 +1,34 @@
-const posts = require('./build/posts.json');
+const postPaths = () => {
+    const posts = () => require('./build/posts.json');
+    return posts().entries.map(post => `/posts/${post._id}`);
+};
 
+const isProd = () => {
+    return process.env.NODE_ENV === 'production';
+};
 
-const postPaths = posts.entries.map(post => `/posts/${post._id}`);
-
-
-postPaths.forEach(post => console.log(post));
-
-let pluginOptions = {
+const pluginOptions = {
     prerenderSpa: {
-      registry: undefined,
-      renderRoutes: [
-	      '/',
-	      '/404',
-	      ...postPaths
-      ],
-      useRenderEvent: true,
-      headless: true,
-      onlyProduction: true
+        registry: undefined,
+        renderRoutes: [
+            '/',
+            '/about',
+            '/404',
+            ...postPaths()
+        ].concat(),
+        useRenderEvent: true,
+        headless: true,
+        onlyProduction: true
     }
 };
 
+const devServer = {
+    port: 8081,
+    watchOptions: {
+        poll: true,
+    },
+};
 
-module.exports =  () => { return { pluginOptions }; }
+module.exports = () => {
+    return {pluginOptions, devServer};
+};

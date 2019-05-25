@@ -1,13 +1,8 @@
-# NOTE: update this with your service name
 service: frontend
 
-# Use the serverless-webpack plugin to transpile ES6
 plugins:
   - serverless-finch
 
-
-# serverless-webpack configuration
-# Enable auto-packing of external modules
 custom:
   client:
         distributionFolder: dist

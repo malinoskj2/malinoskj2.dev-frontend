@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preserve": "./scripts/get_posts.sh",
     "serve": "vue-cli-service serve",
     "build": "./scripts/get_posts.sh && vue-cli-service build",
     "lint": "vue-cli-service lint",

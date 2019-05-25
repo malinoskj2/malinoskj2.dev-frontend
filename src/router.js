@@ -5,11 +5,15 @@ import store from './store'
 const Home2 = () => import('./views/Home2.vue');
 const PostView = () => import('./components/Post.vue');
 const Soft404 = () => import('./views/Soft404.vue');
+const About = () => import('./views/About.vue');
+const Footer = () => import('./views/Footer.vue');
+const Header = () => import('./views/Header.vue');
+const Overlay = () => import('./views/Overlay.vue');
 
 Vue.use(Router);
 
 export default new Router({
-    mode: 'history',
+    mode: process.env.NODENV  === 'production' ? 'history' : 'hash' ,
     scrollBehavior() {
         return {x: 0, y: 0};
     },
@@ -17,24 +21,49 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Home2,
+            components: {
+                overlay: Overlay,
+                header: Header,
+                default: Home2,
+                footer: Footer
+            }
+        },
+        {
+            path: '/about',
+            name: 'about',
+            components: {
+                overlay: Overlay,
+                header: Header,
+                default: About,
+                footer: Footer
+            }
         },
         {
             path: '/posts/:id',
             name: 'post-view',
-            component: PostView,
+            components: {
+                overlay: Overlay,
+                header: Header,
+                default: PostView,
+                footer: Footer
+            },
             beforeEnter: (to, from, next) => {
                 redirectIfNonexistent(postIdFromPath(to.path), '/404', next);
             }
         },
         {
-            path: '*',
+            path: '**',
             redirect: { name: '404' }
         },
         {
             path: '/404',
             name: '404',
-            component: Soft404
+            components: {
+                overlay: Overlay,
+                header: Header,
+                default: Soft404,
+                footer: Footer
+            }
         }
     ]
 });
