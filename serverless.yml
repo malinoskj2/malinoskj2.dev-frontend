@@ -1,0 +1,19 @@
+# NOTE: update this with your service name
+service: frontend
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-finch
+
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  client:
+        distributionFolder: dist
+        bucketName: frontend-dist
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: us-east-1
