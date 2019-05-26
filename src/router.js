@@ -87,7 +87,6 @@ const redirectIfNonexistent = (id, redirectPath, next) => {
 };
 
 const storeContainsPost = (postId) => {
-    //return store.getters.posts.some(post => post._id == postId);
     return store.getters.postsGetter.some(post => post._id == postId);
 };
 

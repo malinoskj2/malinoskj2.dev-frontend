@@ -7,7 +7,7 @@
         <div id="layout">
             <router-view name="header"
                          v-observe-visibility="{ callback: visibilityChanged, throttle: 50 }" />
-            <router-view @show-nav="showNav()" @hide-nav="hideNav()" class="main-view-top-pad"/>
+            <router-view class="main-view-top-pad"/>
         </div>
 
         <div id="layout-footer">
