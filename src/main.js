@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/store'
-import "@/assets/css/styles.css"
-import "@/assets/css/animations.css"
-import "@/assets/css/util.css"
-import "@/assets/css/reset.css"
+import "@/styles/styles.css"
+import "@/styles/animations.css"
+import "@/styles/util.css"
+import "@/styles/reset.css"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faGithub, faGitlab, faFacebookF, faTwitter, faReddit} from '@fortawesome/free-brands-svg-icons'
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons/faEnvelope";
