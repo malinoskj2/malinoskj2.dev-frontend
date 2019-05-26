@@ -54,9 +54,9 @@
                 linkPairs: [
                     {name: "home", link: "tempLinkA", path: {name: 'home'}, count: 0},
                     {name: "posts", link: "tempLinkB", path: {name: 'home'}, count: 1},
-                    {name: "about", link: "tempLinkB", path: {name: 'about'}, count: 0},
+                    {name: "about", link: "tempLinkB", path: {name: 'home'}, count: 0},
                 ],
-                unimplemented: ['posts'],
+                unimplemented: ['posts', 'about'],
             }
         },
         components: {

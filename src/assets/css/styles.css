@@ -106,3 +106,7 @@
 .main-fg-text-color {
     color: #2c3e50;
 }
+
+.accent-text-color {
+    color: rgba(255, 102, 99, 0.59);
+}

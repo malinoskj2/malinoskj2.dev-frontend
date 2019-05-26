@@ -27,6 +27,7 @@ Vue.config.productionTip = false;
 console.log(`Current Environment: ${process.env.NODE_ENV}`);
 
 Vue.use(Toasted, {
+    iconPack: 'fontawesome',
     position: 'bottom-center', duration: 3000,
     className: 'j2-notification', containerClass: 'j2-notification-container'
 });

@@ -13,6 +13,7 @@ const Overlay = () => import('./views/Overlay.vue');
 Vue.use(Router);
 
 export default new Router({
+    base: __dirname,
     mode: process.env.NODENV  === 'production' ? 'history' : 'hash' ,
     scrollBehavior() {
         return {x: 0, y: 0};
@@ -52,19 +53,21 @@ export default new Router({
             }
         },
         {
-            path: '**',
-            redirect: { name: '404' }
-        },
-        {
             path: '/404',
             name: '404',
             components: {
                 overlay: Overlay,
-                header: Header,
                 default: Soft404,
-                footer: Footer
             }
-        }
+        },
+        {
+            path: '**',
+            redirect: { name: '404' }
+        },
+        {
+            path: '/home',
+            redirect: '/'
+        },
     ]
 });
 
