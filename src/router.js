@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from './store'
+import store from './store/store'
 
 const Home2 = () => import('./views/Home2.vue');
 const PostView = () => import('./components/Post.vue');
@@ -87,7 +87,8 @@ const redirectIfNonexistent = (id, redirectPath, next) => {
 };
 
 const storeContainsPost = (postId) => {
-    return store.getters.posts.some(post => post._id == postId);
+    //return store.getters.posts.some(post => post._id == postId);
+    return store.getters.postsGetter.some(post => post._id == postId);
 };
 
 const postIdFromPath = (path) => {

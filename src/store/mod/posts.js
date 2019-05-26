@@ -1,21 +1,17 @@
-/* eslint-disable no-unused-vars */
-import Vue from 'vue'
-import Vuex from 'vuex'
+import markdown from 'markdown'
 import dayjs from 'dayjs'
-import readingTime from 'reading-time'
+import readingTime from "reading-time";
+import * as client from "../../client";
 
-import {getRecentPosts, getPostById} from './client.js'
-
-const markdown = require( "markdown" ).markdown;
-
-Vue.use(Vuex);
-export default new Vuex.Store({
+export default {
     state: {
-        sessionStartTime: dayjs(),
         posts: [],
     },
     getters: {
         posts: state => {
+            return state.posts;
+        },
+        postsGetter: state => {
             return state.posts;
         },
         postById: (state) => (id) => {
@@ -32,7 +28,7 @@ export default new Vuex.Store({
                     ...post,
                     publishedAt: dayjs(post.publishedAt),
                     readingStats: readingTime(post.content),
-                    content: markdown.toHTML(post.content),
+                    content: markdown.markdown.toHTML(post.content),
                     url: generatePostUrl(post)
                 }
             });
@@ -40,20 +36,21 @@ export default new Vuex.Store({
     },
     actions: {
         async initPosts(context) {
-            const posts = await getRecentPosts();
+            const posts = await client.getRecentPosts();
             context.commit('setPosts', posts);
         },
         async initPostById(context, payload) {
             const res = context.getters.postById(payload.id);
 
             if (!res) {
-                const post = await getPostById(payload.id);
+                const post = await client.getPostById(payload.id);
                 context.commit('setPosts', [post]);
             }
         }
     }
-})
+};
 
+// eslint-disable-next-line no-unused-vars
 const logPosts = (entries) => {
     entries.forEach(entry => {
         console.log(`id: ${entry._id}`);
@@ -64,5 +61,5 @@ const logPosts = (entries) => {
 };
 
 const generatePostUrl = (post) => {
-  return `${process.env.VUE_APP_DOMAIN}/#/posts/${post._id}`;
+    return `${process.env.VUE_APP_DOMAIN}/#/posts/${post._id}`;
 };
