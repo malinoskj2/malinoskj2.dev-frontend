@@ -12,7 +12,7 @@ import {faEnvelope} from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import {faArrowCircleUp} from "@fortawesome/free-solid-svg-icons/faArrowCircleUp";
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import VueProgressBar from 'vue-progressbar'
-import ScrollView from 'vue-scrollview'
+import VueObserveVisibility from 'vue-observe-visibility'
 import Toasted from 'vue-toasted';
 import SocialSharing from 'vue-social-sharing';
 import responsive from 'vue-responsive'
@@ -47,10 +47,7 @@ Vue.use(VueProgressBar, {
     },
 });
 
-Vue.use(ScrollView, {
-    throttle: 50,
-    callbacks: []
-});
+Vue.use(VueObserveVisibility)
 
 Vue.use(SocialSharing);
 Vue.use(responsive);

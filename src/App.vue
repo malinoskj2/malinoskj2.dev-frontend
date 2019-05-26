@@ -2,10 +2,11 @@
 
     <div id="app">
 
-        <router-view name="overlay"/>
+        <router-view name="overlay" :headerIsVisible="headerIsVisible"/>
 
         <div id="layout">
-            <router-view name="header"/>
+            <router-view name="header"
+                         v-observe-visibility="{ callback: visibilityChanged, throttle: 50 }" />
             <router-view @show-nav="showNav()" @hide-nav="hideNav()" class="main-view-top-pad"/>
         </div>
 
@@ -20,10 +21,10 @@
 
 </template>
 <script>
-
     export default {
         data() {
             return {
+                headerIsVisible: true,
                 footerIsVisible: true,
                 socialMediaLinkData: [
                     {name: 'github', url: 'https://github.com/malinoskj2', iconSpecs: ['fab', 'github']},
@@ -38,10 +39,15 @@
                     this.$Progress.start();
                     next()
                 });
-
                 this.$router.afterEach(() => {
                     this.$Progress.finish()
                 });
+            },
+            setHeaderVisiblity(visibility) {
+                this.headerIsVisible = visibility;
+            },
+            visibilityChanged(isVisible)  {
+                this.setHeaderVisiblity(isVisible)
             }
         },
         mounted() {

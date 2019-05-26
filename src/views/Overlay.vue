@@ -8,13 +8,13 @@
         <router-link v-responsive.lg.xl
                      :to="{ name: 'home' }" draggable="false" class="router-link">
             <transition name="slide-fade">
-                <h2 v-show="titleIsVisible" id="site-title-overlay"
+                <h2 v-show="!headerIsVisible" id="site-title-overlay"
                     class="no-outline inset-shadow-header">malinoskj2.dev</h2>
             </transition>
         </router-link>
 
         <transition name="slide-fade-arrow">
-            <font-awesome-icon v-show="titleIsVisible" :icon="iconSpecs" size="2x"
+            <font-awesome-icon v-show="!headerIsVisible" :icon="iconSpecs" size="2x"
                                id="go-top-arrow" @click="onArrowClick" draggable="false"/>
         </transition>
 
@@ -22,19 +22,6 @@
                       :link-pairs="linkPairs" class="nav-link-group" draggable="false"
                       linkClass="inset-shadow-header" :unimplemented="unimplemented"
                       delimiter=""/>
-
-        <scroll-view :offset="triggerOffset">
-            <template slot-scope="markers">
-                <scroll-marker
-                        v-for="marker in markerNames"
-                        :name="marker"
-                        :key="marker"
-                        :visible="markers[marker]"
-                        :spacing="30"
-                        @isVisible="hideNav()"
-                        @isNotVisible="showNav()"/>
-            </template>
-        </scroll-view>
 
     </div>
 </template>
@@ -59,6 +46,13 @@
                 unimplemented: ['posts', 'about'],
             }
         },
+        props: {
+            headerIsVisible: {
+                type: Boolean,
+                required: false,
+                default: true
+            }
+        },
         components: {
             NavLinkGroup
         },
@@ -72,6 +66,9 @@
             onArrowClick() {
                 window.scrollTo({top: 0, behavior: 'smooth'})
             },
+            visibilityChanged() {
+                console.log('visibility changed');
+            }
         }
     }
 </script>
@@ -126,11 +123,14 @@
 
     .nav-link-group {
         position: fixed;
-        margin: -2rem 1rem 0 0;
+        margin: 0rem 1rem 0 0;
         padding: 0;
         right: 0;
 
         font-family: Mukta, sans-serif;
         font-size: 1rem;
+    }
+    .visibility-trigger {
+        border: 20px solid red;
     }
 </style>
