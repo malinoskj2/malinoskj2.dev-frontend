@@ -1,40 +1,50 @@
 <template>
     <div class="center-grid">
         <div class="home">
-
-            <div v-for="(post, index) in this.$store.getters.posts" :key="index" class="post-container">
-                <PostView :postId="post._id" :clickable-title="true"
+                <div v-for="post in this.$store.getters.posts" :key="post.condensed" class="post-container">
+                    <Post :postId="post._id" :clickable-title="true"
                           :show-expand-message="true" :show-post-divider="true"
-                          :condensed="true" :show-media-icons="false"/>
-            </div>
+                          :condensed="true" :show-media-icons="false"
+                          :key="post._id"
+                          @read-post="readPost"/>
 
+                    <div class="flex-center-item">
+                        <img alt="post separator" src="@/assets/Line.svg"/>
+                    </div>
+                </div>
         </div>
     </div>
 </template>
 
 <script>
-    import PostView from "../components/Post";
+    import Post from "../components/Post";
 
     export default {
         name: "Home2",
         metaInfo() {
             return {
-                title: process.env.VUE_APP_DOMAIN
+                title: process.env.VUE_APP_DOMAIN,
             }
         },
         components: {
-            PostView,
-        },
-        created() {
-            this.initPosts();
+            Post,
         },
         methods: {
             initPosts() {
                 this.$store.dispatch('initPosts')
-                    .then(() => console.log('Dispatched successfully.'))
+                    .then(() =>  {
+                        this.$log.info('Dispatched successfully.');
+                    })
                     .catch(() => "Failed to get content.");
+            },
+            readPost({title,id}) {
+                this.$log.info(`read post: ${title} : ${id}`);
             }
-        }
+        },
+        created() {
+            this.initPosts();
+        },
+
     }
 </script>
 

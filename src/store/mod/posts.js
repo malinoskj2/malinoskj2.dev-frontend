@@ -8,31 +8,28 @@ export default {
         posts: [],
     },
     getters: {
-        posts: state => {
-            return state.posts;
-        },
-        postsGetter: state => {
-            return state.posts;
-        },
+        posts: (state) => state.posts,
         postById: (state) => (id) => {
             const res = state.posts.find(post => post._id === id);
             if (res) {
                 return res;
             }
-        }
+        },
     },
     mutations: {
         setPosts(state, posts) {
             state.posts = posts.map(post => {
+                const date = dayjs(post.publishedAt);
                 return {
                     ...post,
-                    publishedAt: dayjs(post.publishedAt),
+                    publishedAt: date,
+                    dateString: date.format('MMMM-YYYY'),
                     readingStats: readingTime(post.content),
                     content: markdown.markdown.toHTML(post.content),
                     url: generatePostUrl(post)
                 }
             });
-        }
+        },
     },
     actions: {
         async initPosts(context) {

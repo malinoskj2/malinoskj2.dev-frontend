@@ -1,5 +1,3 @@
-
-
 .post {
     text-align: left;
 }
@@ -104,4 +102,12 @@
 
 .accent-text-color {
     color: rgba(255, 102, 99, 0.59);
+}
+
+.flex-center-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }

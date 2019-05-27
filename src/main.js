@@ -17,14 +17,25 @@ import Toasted from 'vue-toasted';
 import SocialSharing from 'vue-social-sharing';
 import responsive from 'vue-responsive'
 import VueMeta from 'vue-meta'
+import VueLogger from 'vuejs-logger';
 
 library.add(faGithub, faGitlab, faEnvelope, faArrowCircleUp, faFacebookF, faTwitter, faReddit);
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+const isProduction = process.env.NODE_ENV === 'production';
 
 Vue.config.productionTip = false;
 
-console.log(`Current Environment: ${process.env.NODE_ENV}`);
+Vue.use(VueLogger, {
+    isEnabled: !isProduction,
+    logLevel : 'debug',
+    stringifyArguments : false,
+    showLogLevel : true,
+    showMethodName : false,
+    separator: '|',
+    showConsoleColors: true
+});
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(Toasted, {
     iconPack: 'fontawesome',
@@ -52,11 +63,8 @@ Vue.use(VueObserveVisibility)
 Vue.use(SocialSharing);
 Vue.use(responsive);
 Vue.use(VueMeta, {
-    // optional pluginOptions
     refreshOnceOnNavigation: true
 });
-
-console.log("Creating Vue instance.");
 
 new Vue({
     router,

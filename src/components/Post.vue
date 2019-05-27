@@ -1,37 +1,34 @@
 <template>
 
-    <div class="center-grid" draggable="false">
-        <div class="post post-view" draggable="false">
-            <router-link :to="postPath" class="reset-a" draggable="false">
-                <h1 class="post-title" :class="{'clickable-title': clickableTitle,
-                'default-cursor': !clickableTitle}">{{this.post.title}}</h1>
-            </router-link>
+    <div class="post" :class="{'post-view': !condensed }" draggable="false">
+        <router-link :to="postPath" class="reset-a" draggable="false">
+            <h1 class="post-title" :class="{'clickable-title': clickableTitle,
+                'default-cursor': !clickableTitle}" @click="emitRead" :key="post._id"
+            >{{this.post.title}}</h1>
+        </router-link>
 
-            <p class="sub-info-section">
-                <span class="post-date">{{dateString}}</span>
-                <span class="reading-time reading-text-style">:: {{this.readingStatString}}</span>
-            </p>
+        <p class="sub-info-section">
+            <span class="post-date">{{this.post.dateString}}</span>
+            <span class="reading-time reading-text-style">:: {{this.readingStatString}}</span>
+        </p>
 
-            <p v-html="this.post.content" class="post-text" draggable="false"
-               :class="{ 'fade-out': condensed ,'condensed': condensed,
+        <div v-html="this.post.content" class="post-text" draggable="false"
+             :class="{ 'fade-out': condensed ,'condensed': condensed,
                'condensed-show-first': condensedCount >=1,
                 'condensed-show-second': condensedCount >=2,
                  'condensed-show-third': condensedCount >=3,
-                  'condensed-show-fourth': condensedCount >=4 }"/>
+                  'condensed-show-fourth': condensedCount >=4 }"></div>
 
-            <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
-            <div>
-                <router-link :to="postPath" v-if="showExpandMessage">
-                    <p id="expand-message" class="flex-center-item"
-                       @click="$emit('read-post', {title: title})">{{expandMessage}}</p>
-                </router-link>
-            </div>
-
-            <div class="separator-container flex-center-item" v-if="showPostDivider">
-                <img alt="post separator" src="@/assets/Line.svg" id="separator"/>
-            </div>
-
+        <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
+        <div>
+            <router-link :to="postPath" v-if="showExpandMessage">
+                <p id="expand-message" class="flex-center-item"
+                   @click="emitRead">
+                    {{expandMessage}}
+                </p>
+            </router-link>
         </div>
+
     </div>
 
 </template>
@@ -50,12 +47,15 @@
         data() {
             return {
                 post: {
+                    _id: "",
                     title: '',
                     content: '',
                     readingStats: {
                         text: ''
                     },
-                    url: ''
+                    url: '',
+                    publishedAt: {},
+                    dateString: ''
                 }
             }
         },
@@ -118,18 +118,20 @@
             },
             isPostPageView() {
                 return this.$route.params.id === this.post._id;
+            },
+            emitRead() {
+                this.$emit('read-post', {title: this.post.title, id: this.post._id});
             }
         },
         created() {
             this.getPost(this.postId ? this.postId : this.$route.params.id)
-                .then(post => { this.setData(post);});
+                .then(post => {
+                    this.setData(post);
+                });
         },
         computed: {
-            dateString() {
-                return this.post.publishedAt ? this.post.publishedAt.format('MMMM-YYYY') : "";
-            },
             readingStatString() {
-              return this.post.readingStats ? this.post.readingStats.text.toUpperCase() : '';
+                return this.post.readingStats ? this.post.readingStats.text.toUpperCase() : '';
             },
             postPath: function () {
                 return `/posts/${this.post._id}`;
@@ -163,14 +165,6 @@
     #expand-message:hover {
         cursor: pointer;
         color: #FF6663;
-    }
-
-    .flex-center-item {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
     }
 
     a {

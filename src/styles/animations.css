@@ -54,3 +54,14 @@
 .basic-fade-enter, .basic-fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
 }
+
+/* For main content view */
+.fade-main-enter-active, .fade-main-leave-active {
+    transition-duration: 200ms;
+    transition-property: height, opacity;
+    transition-timing-function: ease;
+    overflow: hidden;
+}
+.fade-main-enter, .fade-main-leave-to {
+    opacity: 0;
+}

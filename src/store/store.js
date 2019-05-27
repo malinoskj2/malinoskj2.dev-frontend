@@ -5,9 +5,8 @@ import dayjs from 'dayjs'
 
 import postModule from './mod/posts.js'
 
-// eslint-disable-next-line no-unused-vars
 const vuexLocal = new VuexPersistence({
-    key: 'j2',
+    key: `j2-${process.env.VUE_APP_STATE_VERSION}`,
     storage: window.localStorage,
     modules: ['postModule']
 });
@@ -15,7 +14,7 @@ const vuexLocal = new VuexPersistence({
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    plugins: process.env.NODE_ENV === 'production' ? [] : [],
+    plugins: process.env.NODE_ENV === 'production' ? [vuexLocal.plugin] : [],
     state: {
         sessionStartTime: dayjs(),
     },

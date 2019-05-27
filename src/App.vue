@@ -2,15 +2,15 @@
 
     <div id="app">
 
-        <router-view name="overlay"
-                     :headerIsVisible="supportsIntersectionObserver() ? headerIsVisible : true"/>
+        <router-view name="overlay" :headerIsVisible="supportsIntersectionObserver() ? headerIsVisible : true"/>
 
         <transition appear name="slide-fade-notify">
-            <div id="layout">
-                <router-view name="header"
-                             v-observe-visibility="{ callback: visibilityChanged, throttle: 50 }" />
-                <router-view class="main-view-top-pad"/>
-            </div>
+        <div id="layout">
+
+            <router-view name="header" v-observe-visibility="{callback: visibilityChanged, throttle: 50}"/>
+            <router-view class="main-view-top-pad"/>
+
+        </div>
         </transition>
 
         <div id="layout-footer">
@@ -51,14 +51,13 @@
             setHeaderVisiblity(visibility) {
                 this.headerIsVisible = visibility;
             },
-            visibilityChanged(isVisible)  {
+            visibilityChanged(isVisible) {
                 this.setHeaderVisiblity(isVisible)
             },
-            ...compat
-
+            ...compat,
         },
         mounted() {
-            console.log(`browser ${this.supportsIntersectionObserver() ?
+            this.$log.info(`browser ${this.supportsIntersectionObserver() ?
                 'supports' : 'does not support'} Intersection Observer API`);
             this.$Progress.finish();
         },
@@ -66,6 +65,10 @@
             this.$Progress.start();
             this.initRouteHooks();
         },
+        beforeCreate() {
+            this.$log.info(`Current Environment: ${process.env.NODE_ENV}`);
+            this.$log.info("Creating Vue instance.");
+        }
     }
 </script>
 <style>
