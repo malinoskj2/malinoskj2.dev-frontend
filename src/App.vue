@@ -5,11 +5,13 @@
         <router-view name="overlay"
                      :headerIsVisible="supportsIntersectionObserver() ? headerIsVisible : true"/>
 
-        <div id="layout">
-            <router-view name="header"
-                         v-observe-visibility="{ callback: visibilityChanged, throttle: 50 }" />
-            <router-view class="main-view-top-pad"/>
-        </div>
+        <transition appear name="slide-fade-notify">
+            <div id="layout">
+                <router-view name="header"
+                             v-observe-visibility="{ callback: visibilityChanged, throttle: 50 }" />
+                <router-view class="main-view-top-pad"/>
+            </div>
+        </transition>
 
         <div id="layout-footer">
             <transition appear name="basic-fade">
