@@ -4,22 +4,22 @@
         <div class="post post-view" draggable="false">
             <router-link :to="postPath" class="reset-a" draggable="false">
                 <h1 class="post-title" :class="{'clickable-title': clickableTitle,
-                'default-cursor': !clickableTitle}">{{title}}</h1>
+                'default-cursor': !clickableTitle}">{{this.post.title}}</h1>
             </router-link>
 
             <p class="sub-info-section">
-                <span class="post-date">{{date}}</span>
-                <span class="reading-time reading-text-style">:: {{readingStats.text.toUpperCase()}}</span>
+                <span class="post-date">{{dateString}}</span>
+                <span class="reading-time reading-text-style">:: {{this.readingStatString}}</span>
             </p>
 
-            <p v-html="text" class="post-text" draggable="false"
+            <p v-html="this.post.content" class="post-text" draggable="false"
                :class="{ 'fade-out': condensed ,'condensed': condensed,
                'condensed-show-first': condensedCount >=1,
                 'condensed-show-second': condensedCount >=2,
                  'condensed-show-third': condensedCount >=3,
                   'condensed-show-fourth': condensedCount >=4 }"/>
 
-            <MediaIconGroup v-if="showMediaIcons" :title="title" :url="url" class="icon-group"/>
+            <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
             <div>
                 <router-link :to="postPath" v-if="showExpandMessage">
                     <p id="expand-message" class="flex-center-item"
@@ -49,12 +49,14 @@
         },
         data() {
             return {
-                id: '',
-                title: '',
-                date: '',
-                text: '',
-                readingStats: {text: ''},
-                url: '',
+                post: {
+                    title: '',
+                    content: '',
+                    readingStats: {
+                        text: ''
+                    },
+                    url: ''
+                }
             }
         },
         components: {
@@ -101,31 +103,36 @@
                 default: 2
             }
         },
-        created() {
-            this.getPost(this.postId ? this.postId : this.$route.params.id);
-        },
         methods: {
             async getPost(id) {
                 await this.$store.dispatch('initPostById', {id: id})
                     .catch(() => console.log('store failed to get post'));
 
-                const {title, publishedAt, content, readingStats, url, _id} =
-                    this.$store.getters.postById(id);
-
-                this.title = title;
-                this.date = publishedAt.format('MMMM-YYYY');
-                this.text = content;
-                this.readingStats = readingStats;
-                this.url = url;
-                this.id = _id;
+                return this.$store.getters.postById(id);
             },
-            metaDataTitle () {
-                return this.$route.path == '/' ? undefined : this.title;
+            setData(post) {
+                this.post = post;
+            },
+            metaDataTitle() {
+                return this.$route.path === '/' ? undefined : this.post.title;
+            },
+            isPostPageView() {
+                return this.$route.params.id === this.post._id;
             }
         },
+        created() {
+            this.getPost(this.postId ? this.postId : this.$route.params.id)
+                .then(post => { this.setData(post);});
+        },
         computed: {
-            postPath() {
-                return `/posts/${this.id}`;
+            dateString() {
+                return this.post.publishedAt ? this.post.publishedAt.format('MMMM-YYYY') : "";
+            },
+            readingStatString() {
+              return this.post.readingStats ? this.post.readingStats.text.toUpperCase() : '';
+            },
+            postPath: function () {
+                return `/posts/${this.post._id}`;
             },
         }
     }
@@ -210,5 +217,9 @@
     .reading-text-style {
         color: #19193A;
         margin-left: .5rem;
+    }
+
+    .post-page-view {
+        min-height: 100vh;
     }
 </style>
