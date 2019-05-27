@@ -72,6 +72,7 @@
     }
 
     .copyright-notice {
+        margin-left: .4rem;
     }
 
     .media-link {
