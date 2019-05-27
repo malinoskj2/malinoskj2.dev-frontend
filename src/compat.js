@@ -1,3 +1,8 @@
-export function supportsIntersectionObserver() {
-    return 'IntersectionObserver' in window;
-}
+export default  {
+
+    methods: {
+        supportsIntersectionObserver() {
+            return 'IntersectionObserver' in window;
+        }
+    }
+};

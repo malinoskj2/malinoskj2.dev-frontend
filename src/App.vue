@@ -24,9 +24,10 @@
 
 </template>
 <script>
-    import * as compat from './compat';
+    import compat from './compat';
 
     export default {
+        mixins: [compat],
         data() {
             return {
                 headerIsVisible: true,
@@ -54,7 +55,6 @@
             visibilityChanged(isVisible) {
                 this.setHeaderVisiblity(isVisible)
             },
-            ...compat,
         },
         mounted() {
             this.$log.info(`browser ${this.supportsIntersectionObserver() ?
