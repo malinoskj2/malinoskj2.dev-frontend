@@ -2,7 +2,8 @@
 
     <div id="app">
 
-        <router-view name="overlay" :headerIsVisible="headerIsVisible"/>
+        <router-view name="overlay"
+                     :headerIsVisible="supportsIntersectionObserver() ? headerIsVisible : true"/>
 
         <div id="layout">
             <router-view name="header"
@@ -21,6 +22,8 @@
 
 </template>
 <script>
+    import * as compat from './compat';
+
     export default {
         data() {
             return {
@@ -48,9 +51,13 @@
             },
             visibilityChanged(isVisible)  {
                 this.setHeaderVisiblity(isVisible)
-            }
+            },
+            ...compat
+
         },
         mounted() {
+            console.log(`browser ${this.supportsIntersectionObserver() ?
+                'supports' : 'does not support'} Intersection Observer API`);
             this.$Progress.finish();
         },
         created() {
