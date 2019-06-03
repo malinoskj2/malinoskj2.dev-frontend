@@ -15,7 +15,7 @@
     margin-bottom: 1rem;
 }
 
-.post-text > ul,li {
+.post-text > ul,li,ol {
     margin-left: 1rem;
 }
 
