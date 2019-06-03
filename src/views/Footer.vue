@@ -23,6 +23,13 @@
                 <a :href="codeCopyright" class="reset-a copyright-notice">bsd-2-clause</a>
             </div>
 
+            <div class="license-info-line">
+                <p class="copyright-notice">emojis via</p>
+                <a :href="twemojiLink" class="reset-a copyright-notice">twemoji</a>
+                <p class="reset-a copyright-notice">licensed under</p>
+                <a :href="twemojiCopyright" class="reset-a copyright-notice">cc-by-4</a>
+            </div>
+
         </div>
 
     </div>
@@ -35,6 +42,8 @@
             return {
                 contentCopyright: process.env.VUE_APP_CONTENT_COPY,
                 codeCopyright: process.env.VUE_APP_CODE_COPY,
+                twemojiLink: 'https://twemoji.twitter.com/',
+                twemojiCopyright: 'https://creativecommons.org/licenses/by/4.0/'
             };
         },
         props: {

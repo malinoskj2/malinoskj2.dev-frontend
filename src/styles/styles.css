@@ -15,7 +15,7 @@
     margin-bottom: 1rem;
 }
 
-.post-text > ul,li,ol {
+.post-text > ul, li, ol {
     margin-left: 1rem;
 }
 
@@ -113,4 +113,10 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+}
+
+.emoji {
+    margin-left: .5rem;
+    height: 1rem;
+    transform: translateY(.05rem);
 }

@@ -2,6 +2,13 @@ const md = require('markdown-it')({
     html: true,
 });
 
+const emoji = require('markdown-it-emoji');
+md.use(emoji);
+md.renderer.rules.emoji = function(token, idx) {
+    // eslint-disable-next-line no-undef
+    return twemoji.parse(token[idx].content);
+};
+
 import dayjs from 'dayjs'
 import readingTime from "reading-time";
 import * as client from "../../client";
