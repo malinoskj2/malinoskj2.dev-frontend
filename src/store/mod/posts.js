@@ -1,4 +1,7 @@
-import markdown from 'markdown'
+const md = require('markdown-it')({
+    html: true,
+});
+
 import dayjs from 'dayjs'
 import readingTime from "reading-time";
 import * as client from "../../client";
@@ -27,7 +30,7 @@ export default {
                     publishedAt: date,
                     dateString: date.format('MMMM-YYYY'),
                     readingStats: readingTime(post.content),
-                    content: markdown.markdown.toHTML(post.content),
+                    content: md.render(post.content),
                     url: generatePostUrl(post)
                 };
             });

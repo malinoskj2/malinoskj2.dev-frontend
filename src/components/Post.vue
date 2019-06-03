@@ -1,6 +1,7 @@
 <template>
 
     <div class="post" :class="{'post-view': !condensed }" draggable="false">
+
         <router-link :to="postPath" class="reset-a" draggable="false">
             <h1 class="post-title" :class="{'clickable-title': clickableTitle,
                 'default-cursor': !clickableTitle}" @click="emitRead" :key="post._id"
@@ -228,6 +229,20 @@
 
     .content-styling >>> a:hover {
         background-size: 4px 50px;
+    }
+
+    .content-styling >>> pre {
+        border-radius: .5rem;
+        padding: 1rem;
+        background-color: rgba(192, 192, 192, 0.33);
+
+        overflow-x: scroll;
+    }
+
+    .content-styling >>> code {
+        font-family: 'Fira Mono', monospace;
+        font-size: 1rem;
+
     }
 
 </style>
