@@ -16,7 +16,7 @@
             <p v-text="this.post.description" class="post-text"></p>
         </div>
         <div v-if="!condensed">
-            <div v-html="this.post.content" class="post-text" draggable="false"></div>
+            <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
         </div>
 
         <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
@@ -212,4 +212,23 @@
     .post-page-view {
         min-height: 100vh;
     }
+
+    .content-styling >>> a {
+        color: inherit;
+        background: linear-gradient(
+                to bottom, #FF6663 0%,
+                #FF6663 100%
+        );
+        background-position: 0 100%;
+        background-repeat: repeat-x;
+        background-size: 4px 4px;
+        text-decoration: none;
+        transition: background-size .2s cubic-bezier(0.190, 1.000, 0.220, 1.000);
+    }
+
+    .content-styling >>> a:hover {
+        background-size: 4px 50px;
+    }
+
+
 </style>
