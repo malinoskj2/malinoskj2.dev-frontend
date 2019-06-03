@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preserve": "./scripts/get_posts.sh",
     "serve": "vue-cli-service serve",
-    "build": "./scripts/get_posts.sh && vue-cli-service build",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy": "sls client deploy",
     "analyze": "webpack-bundle-analyzer dist/stats.json",
@@ -42,10 +41,6 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
-    "sass": "^1.20.1",
-    "sass-loader": "^7.1.0",
-    "prerender-spa-plugin": "^3.2.1",
-    "vue-cli-plugin-prerender-spa": "^1.1.5",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
