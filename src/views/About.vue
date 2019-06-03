@@ -1,9 +1,6 @@
 <template>
-    <InfoCard :description="description" :descriptionStyle="descriptionStyle"
+    <InfoCard  :descriptionStyle="descriptionStyle"
               :linkPairs="linkPairs" :linkStyle="linkStyle" id="info-card">
-
-        <img alt="avatar image" slot="image" id="avatar-image"
-             src="../assets/avatar.jpg">
     </InfoCard>
 </template>
 
@@ -19,10 +16,6 @@
         },
         data() {
             return {
-
-                description: 'Hello, I’m Jesse Malinosky, developer and student.' +
-                    ' Fan of learning and unravelling the ' +
-                    ' world’s mysteries through code.',
                 descriptionStyle: {
                     fontFamily: "Mukta, sans-serif",
                     fontStyle: 'normal',
