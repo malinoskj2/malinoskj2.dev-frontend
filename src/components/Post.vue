@@ -12,14 +12,15 @@
             <span class="reading-time reading-text-style">:: {{this.readingStatString}}</span>
         </p>
 
-        <div v-html="this.post.content" class="post-text" draggable="false"
-             :class="{ 'fade-out': condensed ,'condensed': condensed,
-               'condensed-show-first': condensedCount >=1,
-                'condensed-show-second': condensedCount >=2,
-                 'condensed-show-third': condensedCount >=3,
-                  'condensed-show-fourth': condensedCount >=4 }"></div>
+        <div v-if="condensed" class="fade-out">
+            <p v-text="this.post.description" class="post-text"></p>
+        </div>
+        <div v-if="!condensed">
+            <div v-html="this.post.content" class="post-text" draggable="false"></div>
+        </div>
 
         <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
+
         <div>
             <router-link :to="postPath" v-if="showExpandMessage">
                 <p id="expand-message" class="flex-center-item"
@@ -28,7 +29,6 @@
                 </p>
             </router-link>
         </div>
-
     </div>
 
 </template>
@@ -55,7 +55,8 @@
                     },
                     url: '',
                     publishedAt: {},
-                    dateString: ''
+                    dateString: '',
+                    description: ''
                 }
             }
         },
@@ -97,11 +98,6 @@
                 required: false,
                 default: false
             },
-            condensedCount: {
-                type: Number,
-                required: false,
-                default: 2
-            }
         },
         methods: {
             async getPost(id) {
