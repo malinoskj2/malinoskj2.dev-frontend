@@ -22,7 +22,7 @@ const vuexLocal = new VuexPersistence({
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    plugins: process.env.NODE_ENV === 'production' ? [vuexLocal.plugin] : [vuexLocal.plugin],
+    plugins: process.env.NODE_ENV === 'production' ? [vuexLocal.plugin] : [],
     modules: {
         postModule, userModule
     }
