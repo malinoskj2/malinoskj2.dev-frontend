@@ -66,6 +66,7 @@ Vue.use(VueMeta, {
     refreshOnceOnNavigation: true
 });
 
+
 new Vue({
     router,
     store,

@@ -17,9 +17,8 @@
             <p v-text="this.post.description" class="post-text"></p>
         </div>
         <div v-if="!condensed">
-            <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
+                    <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
         </div>
-
         <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
 
         <div>
@@ -244,5 +243,4 @@
         font-size: 1rem;
 
     }
-
 </style>

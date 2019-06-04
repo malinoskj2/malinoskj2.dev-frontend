@@ -1,10 +1,34 @@
+/* eslint-disable no-empty */
+import hljs from 'highlight.js/lib/highlight';
+
+import javascript from 'highlight.js/lib/languages/javascript';
+import css from 'highlight.js/lib/languages/css';
+import yaml from 'highlight.js/lib/languages/yaml';
+import shell from 'highlight.js/lib/languages/shell';
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage('shell', shell);
+
 const md = require('markdown-it')({
     html: true,
+    langPrefix:   'language-',
+    typographer:  true,
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(lang, str).value;
+            } catch (__) {}
+        }
+
+        return '';
+    }
 });
 
 const emoji = require('markdown-it-emoji');
 md.use(emoji);
-md.renderer.rules.emoji = function(token, idx) {
+md.renderer.rules.emoji = function (token, idx) {
     // eslint-disable-next-line no-undef
     return twemoji.parse(token[idx].content);
 };
