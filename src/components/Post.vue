@@ -232,7 +232,7 @@
 
     .content-styling >>> pre {
         border-radius: .5rem;
-        padding: 1rem;
+        padding: 1em;
         background-color: rgba(192, 192, 192, 0.33);
 
         overflow-x: scroll;
@@ -240,7 +240,5 @@
 
     .content-styling >>> code {
         font-family: 'Fira Mono', monospace;
-        font-size: 1rem;
-
     }
 </style>
