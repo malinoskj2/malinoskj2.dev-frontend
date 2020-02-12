@@ -39,9 +39,9 @@
                 triggerOffset: -70,
                 titleIsVisible: false,
                 linkPairs: [
-                    {name: "home", link: "tempLinkA", path: {name: 'home'}, count: 0},
-                    {name: "posts", link: "tempLinkB", path: {name: 'home'}, count: 1},
-                    {name: "about", link: "tempLinkB", path: {name: 'home'}, count: 0},
+                    // {name: "home", link: "tempLinkA", path: {name: 'home'}, count: 0},
+                    // {name: "posts", link: "tempLinkB", path: {name: 'home'}, count: 1},
+                    // {name: "about", link: "tempLinkB", path: {name: 'home'}, count: 0},
                 ],
                 unimplemented: ['posts', 'about'],
             }
