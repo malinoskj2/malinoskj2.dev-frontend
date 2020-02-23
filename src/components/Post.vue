@@ -10,7 +10,7 @@
 
         <p class="sub-info-section">
             <span class="post-date">{{this.post.dateString}}</span>
-            <span class="reading-time reading-text-style">:: {{this.readingStatString}}</span>
+            <span> :: {{this.byLine}}</span>
         </p>
 
         <div v-if="condensed" class="fade-out">
@@ -51,14 +51,12 @@
                     id: "",
                     title: '',
                     content: '',
-                    readingStats: {
-                        text: ''
-                    },
                     url: '',
                     publishedAt: {},
                     dateString: '',
                     description: ''
-                }
+                },
+                byLine: 'By Jesse Malinosky'
             }
         },
         components: {
