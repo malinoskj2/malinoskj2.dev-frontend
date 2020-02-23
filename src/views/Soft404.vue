@@ -1,8 +1,9 @@
 <template>
-    <div class="fade-404">
-        <h1 class="inset-shadow-header">404</h1>
-    </div>
-
+    <router-link to="/" class="router-link">
+        <div class="fade-404">
+            <h1 class="inset-shadow-header">404</h1>
+        </div>
+    </router-link>
 </template>
 
 <script>
@@ -40,7 +41,7 @@
     h1 {
         transition: 300ms all;
 
-        font-size: 4rem;
+        font-size: 20rem;
         filter: opacity(100%);
     }
 
