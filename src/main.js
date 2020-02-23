@@ -6,6 +6,7 @@ import "@/styles/styles.css"
 import "@/styles/animations.css"
 import "@/styles/util.css"
 import "@/styles/reset.css"
+import "@/styles/syntax-highlighting.css"
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faGithub, faGitlab, faFacebookF, faTwitter, faReddit} from '@fortawesome/free-brands-svg-icons'
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons/faEnvelope";
@@ -65,7 +66,6 @@ Vue.use(responsive);
 Vue.use(VueMeta, {
     refreshOnceOnNavigation: true
 });
-
 
 new Vue({
     router,
