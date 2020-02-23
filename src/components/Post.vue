@@ -116,7 +116,6 @@
             }
         },
         created() {
-            this.$log.debug('created post');
             const id = this.postId ? this.postId : this.$route.params.id;
             const post = this.$store.getters.postById(id);
             this.setData(post);
