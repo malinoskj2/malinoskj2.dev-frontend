@@ -240,7 +240,7 @@ In the "router.js" module, each route lists the names of each router-view elemen
 I'm not going to go into implementation specifics of every component. This is more meant to be an overview of my experience than a lecture on Vue component implementation but for those curious, the code is available on 
 [Github](https://github.com/malinoskj2/malinoskj2.dev-frontend).
 
-### Deployment :bomb:
+### Deployment
 One thing that became immediately obvious to me after developing my previous website (which was never updated past its inception) was the need to be able to iterate quickly. I imagine most people starting a blog intend on writing some markdown and throwing out some ideas. I not being forced to spend their time messing with Nginx configs so their share button works with twitter's [content security policy](https://blog.twitter.com/engineering/en_us/a/2013/csp-to-the-rescue-leveraging-the-browser-for-security.html).
 
 So when creating this site It was of great importance to me to have some sort of productive workflow setup. I needed to be able to both iterate on the code powering the site as well as post new content without much effort. We established the fact that yes, I am trading convenience for some work upfront, but that work needs to remain upfront. When everything is 
