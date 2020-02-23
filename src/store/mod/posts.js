@@ -1,7 +1,6 @@
 /* eslint-disable no-empty */
 import dayjs from 'dayjs'
 import readingTime from "reading-time";
-import * as client from "../../client";
 
 export default {
     state: {
@@ -30,20 +29,6 @@ export default {
             });
         },
     },
-    actions: {
-        async initPosts(context) {
-            const posts = await client.getRecentPosts();
-            context.commit('setPosts', posts);
-        },
-        async initPostById(context, payload) {
-            const res = context.getters.postById(payload.id);
-
-            if (!res) {
-                const post = await client.getPostById(payload.id);
-                context.commit('setPosts', [post]);
-            }
-        }
-    }
 };
 
 // eslint-disable-next-line no-unused-vars

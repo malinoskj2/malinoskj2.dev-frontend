@@ -33,7 +33,6 @@
         components: {
             Post2,
         },
-
     }
 </script>
 
