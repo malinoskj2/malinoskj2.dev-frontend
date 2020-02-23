@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store/store'
 
 const Home2 = () => import('./views/Home2.vue');
 const Post = () => import('./components/Post.vue');
@@ -47,6 +48,13 @@ export default new Router({
                 default: Post,
                 footer: Footer
             },
+            beforeEnter: (to, from, next) => {
+                if (storeContainsPost(postIdFromPath(to.path))) {
+                    next()
+                } else {
+                    next({path: '/404'})
+                }
+            }
         },
         {
             path: '/404',
@@ -66,3 +74,11 @@ export default new Router({
         },
     ]
 });
+
+const storeContainsPost = (postId) => {
+    return store.state.postModule.posts.some(post => post.id == postId);
+};
+
+const postIdFromPath = (path) => {
+    return path.substring(path.lastIndexOf('/') + 1);
+};
