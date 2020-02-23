@@ -127,16 +127,8 @@
         created() {
             this.$log.debug('created post');
             const id = this.postId ? this.postId : this.$route.params.id;
-            const postMeta = posts.find(post => post.id === id);
-            const date = dayjs(postMeta.publishedAt);
-
-            this.setData({
-                ...postMeta,
-                publishedAt: date,
-                dateString: date.format('MMMM-YYYY'),
-                readingStats: readingTime("Temp"),
-                url: generatePostUrl(postMeta),
-            });
+            const post = this.$store.getters.postById(id);
+            this.setData(post);
         },
         computed: {
             readingStatString() {

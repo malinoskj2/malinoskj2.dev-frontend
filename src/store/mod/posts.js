@@ -1,19 +1,30 @@
 /* eslint-disable no-empty */
 import dayjs from 'dayjs'
 import readingTime from "reading-time";
+import posts from '@/posts/posts.json'
+
+const generatePostUrl = (post) => {
+    return `${process.env.VUE_APP_DOMAIN}/#/posts/${post.id}`;
+};
 
 export default {
     state: {
-        posts: [],
+        posts: posts.map(post => {
+
+            const date = dayjs(post.publishedAt);
+
+            return {
+                ...post,
+                publishedAt: date,
+                dateString: date.format('MMMM-YYYY'),
+                readingStats: readingTime("Temp"),
+                url: generatePostUrl(post),
+            }
+        }),
     },
     getters: {
         posts: (state) => state.posts,
-        postById: (state) => (id) => {
-            const res = state.posts.find(post => post._id === id);
-            if (res) {
-                return res;
-            }
-        },
+        postById: (state) => (id) => state.posts.find(post => post.id === id),
     },
     mutations: {
         setPosts(state, posts) {
@@ -29,18 +40,4 @@ export default {
             });
         },
     },
-};
-
-// eslint-disable-next-line no-unused-vars
-const logPosts = (entries) => {
-    entries.forEach(entry => {
-        console.log(`id: ${entry._id}`);
-        console.log(`title: ${entry.title}`);
-        console.log(`publishedAt: ${dayjs(entry.publishedAt).format('MMMM-YYYY')}`);
-        console.log(`content: ${entry.content.substring(1, 10)}...`);
-    })
-};
-
-const generatePostUrl = (post) => {
-    return `${process.env.VUE_APP_DOMAIN}/#/posts/${post._id}`;
 };
