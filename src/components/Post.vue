@@ -4,7 +4,7 @@
 
         <router-link :to="postPath" class="reset-a" draggable="false">
             <h1 class="post-title" :class="{'clickable-title': clickableTitle,
-                'default-cursor': !clickableTitle}" @click="emitRead" :key="post._id"
+                'default-cursor': !clickableTitle}" @click="emitRead" :key="post.id"
             >{{this.post.title}}</h1>
         </router-link>
 
@@ -17,7 +17,8 @@
             <p v-text="this.post.description" class="post-text"></p>
         </div>
         <div v-if="!condensed">
-                    <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
+            <component v-bind:is="this.post.id"
+                       class="post-text content-styling" draggable="false"/>
         </div>
         <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
 
@@ -34,8 +35,17 @@
 </template>
 
 <script>
+    /* eslint-disable no-empty */
     /* eslint-disable no-unused-vars */
     import MediaIconGroup from '@/components/MediaIconGroup.vue';
+    import posts from '@/posts/posts.json'
+    import dayjs from 'dayjs'
+    import readingTime from "reading-time";
+    import initial from '@/posts/markdown/initial.md';
+
+    const generatePostUrl = (post) => {
+        return `${process.env.VUE_APP_DOMAIN}/#/posts2/${post.id}`;
+    };
 
     export default {
         name: "PostView",
@@ -47,7 +57,7 @@
         data() {
             return {
                 post: {
-                    _id: "",
+                    id: "",
                     title: '',
                     content: '',
                     readingStats: {
@@ -61,7 +71,8 @@
             }
         },
         components: {
-            MediaIconGroup
+            MediaIconGroup,
+            initial
         },
         props: {
             postId: {
@@ -100,12 +111,6 @@
             },
         },
         methods: {
-            async getPost(id) {
-                await this.$store.dispatch('initPostById', {id: id})
-                    .catch(() => console.log('store failed to get post'));
-
-                return this.$store.getters.postById(id);
-            },
             setData(post) {
                 this.post = post;
             },
@@ -120,21 +125,30 @@
             }
         },
         created() {
-            this.getPost(this.postId ? this.postId : this.$route.params.id)
-                .then(post => {
-                    this.setData(post);
-                    console.log(`Description: ${post.description}`)
-                });
+            this.$log.debug('created post');
+            const id = this.postId ? this.postId : this.$route.params.id;
+            const postMeta = posts.find(post => post.id === id);
+            const date = dayjs(postMeta.publishedAt);
+
+            this.setData({
+                ...postMeta,
+                publishedAt: date,
+                dateString: date.format('MMMM-YYYY'),
+                readingStats: readingTime("Temp"),
+                url: generatePostUrl(postMeta),
+            });
         },
         computed: {
             readingStatString() {
                 return this.post.readingStats ? this.post.readingStats.text.toUpperCase() : '';
             },
             postPath: function () {
-                return `/posts/${this.post._id}`;
+                return `/posts/${this.post.id}`;
             },
         }
     }
+
+
 </script>
 
 <style scoped>
