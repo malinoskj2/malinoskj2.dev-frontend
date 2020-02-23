@@ -9,8 +9,8 @@
         </router-link>
 
         <p class="sub-info-section">
-            <span class="post-date">{{this.post.dateString}}</span>
-            <span> :: {{this.byLine}}</span>
+            <span class="subtitle-line">{{this.post.dateString}}</span>
+            <span class="subtitle-line"> :: {{this.byLine}}</span>
         </p>
 
         <div v-if="condensed" class="fade-out">
