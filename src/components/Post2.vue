@@ -17,7 +17,7 @@
             <p v-text="this.post.description" class="post-text"></p>
         </div>
         <div v-if="!condensed">
-                    <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
+            <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
         </div>
         <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
 
@@ -36,6 +36,13 @@
 <script>
     /* eslint-disable no-unused-vars */
     import MediaIconGroup from '@/components/MediaIconGroup.vue';
+    import posts from '@/posts/posts.json'
+    import dayjs from 'dayjs'
+    import readingTime from "reading-time";
+
+    const generatePostUrl = (post) => {
+        return `${process.env.VUE_APP_DOMAIN}/#/posts2/${post.id}`;
+    };
 
     export default {
         name: "PostView",
@@ -47,7 +54,7 @@
         data() {
             return {
                 post: {
-                    _id: "",
+                    id: "",
                     title: '',
                     content: '',
                     readingStats: {
@@ -120,11 +127,16 @@
             }
         },
         created() {
-            this.getPost(this.postId ? this.postId : this.$route.params.id)
-                .then(post => {
-                    this.setData(post);
-                    console.log(`Description: ${post.description}`)
-                });
+            const postMeta = posts.find(post => post.id === this.$route.params.id);
+            const date = dayjs(postMeta.publishedAt);
+
+            this.setData({
+                ...postMeta,
+                publishedAt: date,
+                dateString: date.format('MMMM-YYYY'),
+                readingStats: readingTime("Temp"),
+                url: generatePostUrl(postMeta)
+            });
         },
         computed: {
             readingStatString() {
@@ -135,6 +147,8 @@
             },
         }
     }
+
+
 </script>
 
 <style scoped>

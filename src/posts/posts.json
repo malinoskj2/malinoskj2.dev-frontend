@@ -1,7 +1,9 @@
 [
   {
+    "id": "initial",
     "title": "Initial Commit",
     "publishedAt": "2019-06-02",
-    "markdownFileName": "initial.md"
+    "markdownFileName": "initial.md",
+    "description": "Description: Every project needs one right? So it seems that after a busy few weeks I finally had the time to carve out a little piece of the internet for myself. This blog is very much a work in progress (try using any of the buttons in the nav), also I can't promise the bright pink accents will stay, but hey, you are able to read this post right?"
   }
 ]
