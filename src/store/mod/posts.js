@@ -36,7 +36,6 @@ md.renderer.rules.emoji = function (token, idx) {
 import dayjs from 'dayjs'
 import readingTime from "reading-time";
 import * as client from "../../client";
-import Vue from 'vue'
 
 export default {
     state: {
@@ -53,7 +52,6 @@ export default {
     },
     mutations: {
         setPosts(state, posts) {
-
             state.posts = posts.map(post => {
                 const date = dayjs(post.publishedAt);
                 return {
@@ -65,13 +63,6 @@ export default {
                     url: generatePostUrl(post)
                 };
             });
-
-            Vue.$log.debug(`Setting state.posts`);
-            state.posts.forEach(post => {
-                Vue.$log.debug(`title: ${post.title}`);
-                Vue.$log.debug(`content: \n${post.content}`);
-            });
-
         },
     },
     actions: {

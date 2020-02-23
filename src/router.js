@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import store from './store/store'
 
 const Home2 = () => import('./views/Home2.vue');
-const PostView = () => import('./components/Post.vue');
+const Post = () => import('./components/Post.vue');
+const Post2 = () => import('./components/Post2.vue');
 const Soft404 = () => import('./views/Soft404.vue');
 const About = () => import('./views/About.vue');
 const Footer = () => import('./views/Footer.vue');
@@ -45,12 +46,22 @@ export default new Router({
             components: {
                 overlay: Overlay,
                 header: Header,
-                default: PostView,
+                default: Post,
                 footer: Footer
             },
             beforeEnter: (to, from, next) => {
                 redirectIfNonexistent(postIdFromPath(to.path), '/404', next);
             }
+        },
+        {
+            path: '/posts2/:id',
+            name: 'post2-view',
+            components: {
+                overlay: Overlay,
+                header: Header,
+                default: Post2,
+                footer: Footer
+            },
         },
         {
             path: '/404',
