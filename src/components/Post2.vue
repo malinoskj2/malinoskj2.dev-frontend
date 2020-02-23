@@ -17,7 +17,8 @@
             <p v-text="this.post.description" class="post-text"></p>
         </div>
         <div v-if="!condensed">
-            <div v-html="this.post.content" class="post-text content-styling" draggable="false"></div>
+            <component v-bind:is="this.post.id"
+                       class="post-text content-styling" draggable="false"/>
         </div>
         <MediaIconGroup v-if="showMediaIcons" :title="this.post.title" :url="this.post.url" class="icon-group"/>
 
@@ -34,15 +35,34 @@
 </template>
 
 <script>
+    /* eslint-disable no-empty */
     /* eslint-disable no-unused-vars */
     import MediaIconGroup from '@/components/MediaIconGroup.vue';
     import posts from '@/posts/posts.json'
     import dayjs from 'dayjs'
     import readingTime from "reading-time";
+    import hljs from 'highlight.js/lib/highlight';
+    import initial from '@/posts/markdown/initial.md';
 
     const generatePostUrl = (post) => {
         return `${process.env.VUE_APP_DOMAIN}/#/posts2/${post.id}`;
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     export default {
         name: "PostView",
@@ -68,7 +88,8 @@
             }
         },
         components: {
-            MediaIconGroup
+            MediaIconGroup,
+            initial
         },
         props: {
             postId: {
@@ -135,7 +156,7 @@
                 publishedAt: date,
                 dateString: date.format('MMMM-YYYY'),
                 readingStats: readingTime("Temp"),
-                url: generatePostUrl(postMeta)
+                url: generatePostUrl(postMeta),
             });
         },
         computed: {
