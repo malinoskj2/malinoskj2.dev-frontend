@@ -35,17 +35,8 @@
 </template>
 
 <script>
-    /* eslint-disable no-empty */
-    /* eslint-disable no-unused-vars */
     import MediaIconGroup from '@/components/MediaIconGroup.vue';
-    import posts from '@/posts/posts.json'
-    import dayjs from 'dayjs'
-    import readingTime from "reading-time";
     import initial from '@/posts/markdown/initial.md';
-
-    const generatePostUrl = (post) => {
-        return `${process.env.VUE_APP_DOMAIN}/#/posts2/${post.id}`;
-    };
 
     export default {
         name: "PostView",
