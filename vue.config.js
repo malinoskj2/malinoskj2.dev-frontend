@@ -1,5 +1,6 @@
+// webpack configuration
 module.exports = {
-    chainWebpack(config){
+    chainWebpack: config => {
         config.module.rule('md')
             .test(/\.md/)
             .use('vue-loader')
